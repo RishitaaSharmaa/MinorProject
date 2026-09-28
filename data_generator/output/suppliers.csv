@@ -1,0 +1,11 @@
+supplier_id,name,quoted_lead_time_days,lead_time_std_dev,reliability_score,price_break_tiers,strike_status
+SUP001,"Mammen, Balay and Kala",8,1.38,0.803,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP002,Saxena LLC,14,2.6,0.922,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP003,"Hayre, Nayak and Vaidya",13,1.35,0.87,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP004,Shere Inc,10,1.87,0.721,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP005,Ratti-Wable,6,3.79,0.838,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP006,Bhardwaj and Sons,15,4.46,0.873,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP007,Bakshi-Khanna,15,1.64,0.924,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP008,Mani-Nayak,7,4.18,0.979,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP009,Joshi and Sons,10,1.92,0.921,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear
+SUP010,Chaudhuri and Sons,7,3.48,0.917,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]",clear

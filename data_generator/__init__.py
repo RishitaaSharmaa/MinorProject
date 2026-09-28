@@ -1,0 +1,1 @@
+"""Synthetic procurement decision dataset generator."""

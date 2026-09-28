@@ -1,0 +1,45 @@
+id,entity,field,old_value,new_value,event_time,event_type
+EVT00020,supplier:SUP010,lead_time_days,7,2,2025-04-07,lead_time
+EVT00022,item:SKU035:week:2025-08-18,forecast_qty,233,209,2025-04-16,forecast_revision
+EVT00040,item:SKU005,stock_qty,488,376,2025-05-13,stock_correction
+EVT00033,supplier:SUP004,lead_time_days,10,7,2025-05-20,lead_time
+EVT00028,item:SKU026,stock_qty,869,875,2025-05-26,stock_correction
+EVT00017,item:SKU010:week:2025-07-28,forecast_qty,186,176,2025-05-29,forecast_revision
+EVT00026,item:SKU030,stock_qty,405,349,2025-05-29,stock_correction
+EVT00016,supplier:SUP007,strike_status,"""clear""","""open""",2025-06-02,supplier_risk
+EVT00037,item:SKU020:week:2025-06-23,forecast_qty,529,544,2025-06-04,forecast_revision
+EVT00035,supplier:SUP009,strike_status,"""clear""","""open""",2025-06-07,supplier_risk
+EVT00042,supplier:SUP007,lead_time_days,15,18,2025-06-18,lead_time
+EVT00043,item:SKU007:week:2025-06-23,forecast_qty,510,561,2025-06-20,forecast_revision
+EVT00019,supplier:SUP008,lead_time_days,7,15,2025-06-21,lead_time
+EVT00030,supplier:SUP002,lead_time_days,14,11,2025-06-21,lead_time
+EVT00001,item:SKU017,stock_qty,470,546,2025-06-23,assumption_reversal
+EVT00041,item:SKU021:week:2025-08-11,forecast_qty,352,301,2025-07-02,forecast_revision
+EVT00034,supplier:SUP006,lead_time_days,15,10,2025-07-03,lead_time
+EVT00009,item:SKU014,stock_qty,896,934,2025-07-19,assumption_reversal
+EVT00038,item:SKU030:week:2025-04-28,forecast_qty,137,161,2025-07-23,forecast_revision
+EVT00011,supplier:SUP006,lead_time_days,15,18,2025-07-26,assumption_reversal
+EVT00005,supplier:SUP009,strike_status,"""clear""","""open""",2025-08-03,assumption_reversal
+EVT00014,supplier:SUP002,lead_time_days,14,18,2025-08-08,assumption_reversal
+EVT00024,item:SKU031,stock_qty,956,941,2025-08-13,stock_correction
+EVT00036,item:SKU035:week:2025-08-25,forecast_qty,252,296,2025-08-16,forecast_revision
+EVT00010,item:SKU018:week:2025-06-23,forecast_qty,728,514,2025-08-20,assumption_reversal
+EVT00029,supplier:SUP003,price_break_tiers,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]","[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 5.5}]",2025-08-20,price_break
+EVT00023,supplier:SUP009,strike_status,"""clear""","""open""",2025-08-21,supplier_risk
+EVT00025,supplier:SUP005,price_break_tiers,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]","[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 3.5}]",2025-08-21,price_break
+EVT00012,item:SKU020,stock_qty,517,554,2025-08-26,assumption_reversal
+EVT00044,supplier:SUP009,strike_status,"""clear""","""open""",2025-08-28,supplier_risk
+EVT00006,item:SKU018:week:2025-07-28,forecast_qty,547,474,2025-08-29,assumption_reversal
+EVT00031,item:SKU011,stock_qty,1248,955,2025-08-30,stock_correction
+EVT00021,supplier:SUP007,lead_time_days,15,18,2025-09-02,lead_time
+EVT00008,item:SKU021,stock_qty,318,334,2025-09-03,assumption_reversal
+EVT00039,supplier:SUP009,lead_time_days,10,5,2025-09-07,lead_time
+EVT00018,item:SKU037,stock_qty,207,177,2025-09-08,stock_correction
+EVT00032,supplier:SUP005,price_break_tiers,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]","[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 5.5}]",2025-09-08,price_break
+EVT00003,item:SKU043:week:2025-09-01,forecast_qty,233,197,2025-09-15,assumption_reversal
+EVT00007,supplier:SUP002,lead_time_days,14,17,2025-09-16,assumption_reversal
+EVT00013,item:SKU004:week:2025-09-01,forecast_qty,727,596,2025-09-18,assumption_reversal
+EVT00027,supplier:SUP001,price_break_tiers,"[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 4.5}]","[{""min_qty"": 1, ""discount_pct"": 0.0}, {""min_qty"": 100, ""discount_pct"": 2.0}, {""min_qty"": 500, ""discount_pct"": 6.5}]",2025-09-20,price_break
+EVT00004,supplier:SUP009,strike_status,"""clear""","""open""",2025-09-27,assumption_reversal
+EVT00015,supplier:SUP005,strike_status,"""clear""","""open""",2025-09-27,assumption_reversal
+EVT00002,supplier:SUP003,strike_status,"""clear""","""open""",2025-09-29,assumption_reversal

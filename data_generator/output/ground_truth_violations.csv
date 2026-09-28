@@ -1,0 +1,74 @@
+event_id,decision_id,violated_condition,event_date
+EVT00016,DEC000048,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",2025-06-02
+EVT00016,DEC000124,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",2025-06-02
+EVT00035,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-06-07
+EVT00035,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-06-07
+EVT00019,DEC000191,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",2025-06-21
+EVT00019,DEC000195,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 8, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",2025-06-21
+EVT00001,DEC000201,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 545, ""observed_value"": 470, ""entity"": ""item:SKU017""}",2025-06-23
+EVT00009,DEC000290,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 933, ""observed_value"": 896, ""entity"": ""item:SKU014""}",2025-07-19
+EVT00011,DEC000030,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00011,DEC000043,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00011,DEC000121,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00011,DEC000224,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00011,DEC000233,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00011,DEC000263,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",2025-07-26
+EVT00005,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-03
+EVT00005,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-03
+EVT00005,DEC000267,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-03
+EVT00005,DEC000326,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-03
+EVT00014,DEC000123,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-08-08
+EVT00014,DEC000129,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-08-08
+EVT00014,DEC000354,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-08-08
+EVT00014,DEC000359,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-08-08
+EVT00010,DEC000243,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 515, ""observed_value"": 728, ""entity"": ""item:SKU018:week:2025-06-23""}",2025-08-20
+EVT00023,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-21
+EVT00023,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-21
+EVT00023,DEC000267,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-21
+EVT00023,DEC000326,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-21
+EVT00012,DEC000150,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 553, ""observed_value"": 517, ""entity"": ""item:SKU020""}",2025-08-26
+EVT00044,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00044,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00044,DEC000267,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00044,DEC000326,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00044,DEC000410,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00044,DEC000419,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-08-28
+EVT00006,DEC000333,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 475, ""observed_value"": 547, ""entity"": ""item:SKU018:week:2025-07-28""}",2025-08-29
+EVT00008,DEC000124,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 333, ""observed_value"": 318, ""entity"": ""item:SKU021""}",2025-09-03
+EVT00003,DEC000454,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 198, ""observed_value"": 233, ""entity"": ""item:SKU043:week:2025-09-01""}",2025-09-15
+EVT00007,DEC000123,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-09-16
+EVT00007,DEC000129,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-09-16
+EVT00007,DEC000460,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",2025-09-16
+EVT00013,DEC000455,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 597, ""observed_value"": 727, ""entity"": ""item:SKU004:week:2025-09-01""}",2025-09-18
+EVT00004,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000267,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000326,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000410,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000419,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00004,DEC000499,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",2025-09-27
+EVT00015,DEC000011,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000086,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000172,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000361,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000394,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000453,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00015,DEC000488,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",2025-09-27
+EVT00002,DEC000037,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000041,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000063,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000075,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000091,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000118,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000133,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000138,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000170,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000176,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000276,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000348,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000386,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000432,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000448,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000500,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000512,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29
+EVT00002,DEC000528,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",2025-09-29

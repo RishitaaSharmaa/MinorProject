@@ -1,0 +1,367 @@
+id,decision_id,condition,is_ground_truth,confirmed_by_user
+ASM000001,DEC000006,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000002,DEC000006,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1543, ""observed_value"": 1479, ""entity"": ""item:SKU003""}",True,False
+ASM000003,DEC000011,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 6, ""entity"": ""supplier:SUP005""}",True,False
+ASM000004,DEC000011,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000005,DEC000012,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 186, ""observed_value"": 234, ""entity"": ""item:SKU035:week:2025-04-07""}",True,False
+ASM000006,DEC000012,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000007,DEC000014,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000008,DEC000014,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 572, ""observed_value"": 499, ""entity"": ""item:SKU043""}",True,False
+ASM000009,DEC000021,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000010,DEC000021,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 400, ""observed_value"": 345, ""entity"": ""item:SKU044""}",True,False
+ASM000011,DEC000026,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 19, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000012,DEC000026,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000013,DEC000027,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 934, ""observed_value"": 864, ""entity"": ""item:SKU034""}",True,False
+ASM000014,DEC000027,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 270, ""observed_value"": 350, ""entity"": ""item:SKU034:week:2025-04-14""}",True,False
+ASM000015,DEC000028,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000016,DEC000028,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 8, ""entity"": ""supplier:SUP001""}",True,False
+ASM000017,DEC000029,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 330, ""observed_value"": 306, ""entity"": ""item:SKU006""}",True,False
+ASM000018,DEC000029,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 119, ""observed_value"": 144, ""entity"": ""item:SKU006:week:2025-04-14""}",True,False
+ASM000019,DEC000030,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 79, ""observed_value"": 114, ""entity"": ""item:SKU010:week:2025-04-14""}",True,False
+ASM000020,DEC000030,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000021,DEC000032,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000022,DEC000032,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 197, ""observed_value"": 239, ""entity"": ""item:SKU015:week:2025-04-14""}",True,False
+ASM000023,DEC000035,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 759, ""observed_value"": 689, ""entity"": ""item:SKU048""}",True,False
+ASM000024,DEC000035,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 202, ""observed_value"": 228, ""entity"": ""item:SKU048:week:2025-04-14""}",True,False
+ASM000025,DEC000037,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000026,DEC000037,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000027,DEC000038,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 337, ""observed_value"": 311, ""entity"": ""item:SKU005""}",True,False
+ASM000028,DEC000038,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 104, ""observed_value"": 163, ""entity"": ""item:SKU005:week:2025-04-14""}",True,False
+ASM000029,DEC000041,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1288, ""observed_value"": 1172, ""entity"": ""item:SKU007""}",True,False
+ASM000030,DEC000041,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000031,DEC000043,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000032,DEC000043,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 209, ""observed_value"": 295, ""entity"": ""item:SKU049:week:2025-04-14""}",True,False
+ASM000033,DEC000044,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000034,DEC000044,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1130, ""observed_value"": 1011, ""entity"": ""item:SKU027""}",True,False
+ASM000035,DEC000045,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000036,DEC000045,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 454, ""observed_value"": 439, ""entity"": ""item:SKU037""}",True,False
+ASM000037,DEC000046,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000038,DEC000046,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 715, ""observed_value"": 600, ""entity"": ""item:SKU050""}",True,False
+ASM000039,DEC000048,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",True,False
+ASM000040,DEC000048,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 219, ""observed_value"": 354, ""entity"": ""item:SKU013:week:2025-04-21""}",True,False
+ASM000041,DEC000058,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000042,DEC000058,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 338, ""observed_value"": 434, ""entity"": ""item:SKU045:week:2025-04-21""}",True,False
+ASM000043,DEC000059,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 158, ""observed_value"": 229, ""entity"": ""item:SKU046:week:2025-04-21""}",True,False
+ASM000044,DEC000059,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 429, ""observed_value"": 401, ""entity"": ""item:SKU046""}",True,False
+ASM000045,DEC000063,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 426, ""observed_value"": 357, ""entity"": ""item:SKU044""}",True,False
+ASM000046,DEC000063,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000047,DEC000064,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 81, ""observed_value"": 102, ""entity"": ""item:SKU016:week:2025-04-28""}",True,False
+ASM000048,DEC000064,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 181, ""observed_value"": 167, ""entity"": ""item:SKU016""}",True,False
+ASM000049,DEC000068,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000050,DEC000068,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000051,DEC000070,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000052,DEC000070,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 259, ""observed_value"": 406, ""entity"": ""item:SKU048:week:2025-04-28""}",True,False
+ASM000053,DEC000071,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 19, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000054,DEC000071,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 151, ""observed_value"": 225, ""entity"": ""item:SKU010:week:2025-04-28""}",True,False
+ASM000055,DEC000072,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 211, ""observed_value"": 178, ""entity"": ""item:SKU022""}",True,False
+ASM000056,DEC000072,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000057,DEC000074,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000058,DEC000074,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 165, ""observed_value"": 184, ""entity"": ""item:SKU009:week:2025-04-28""}",True,False
+ASM000059,DEC000075,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000060,DEC000075,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000061,DEC000078,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000062,DEC000078,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1021, ""observed_value"": 959, ""entity"": ""item:SKU042""}",True,False
+ASM000063,DEC000080,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 158, ""observed_value"": 193, ""entity"": ""item:SKU006:week:2025-04-28""}",True,False
+ASM000064,DEC000080,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 7, ""entity"": ""supplier:SUP010""}",True,False
+ASM000065,DEC000084,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 156, ""observed_value"": 216, ""entity"": ""item:SKU005:week:2025-04-28""}",True,False
+ASM000066,DEC000084,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 330, ""observed_value"": 314, ""entity"": ""item:SKU005""}",True,False
+ASM000067,DEC000086,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 893, ""observed_value"": 833, ""entity"": ""item:SKU026""}",True,False
+ASM000068,DEC000086,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000069,DEC000089,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000070,DEC000089,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 186, ""observed_value"": 237, ""entity"": ""item:SKU035:week:2025-05-05""}",True,False
+ASM000071,DEC000091,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 170, ""observed_value"": 150, ""entity"": ""item:SKU044""}",True,False
+ASM000072,DEC000091,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000073,DEC000099,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000074,DEC000099,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000075,DEC000102,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 364, ""observed_value"": 488, ""entity"": ""item:SKU038:week:2025-05-05""}",True,False
+ASM000076,DEC000102,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000077,DEC000107,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 8, ""observed_value"": 7, ""entity"": ""supplier:SUP010""}",True,False
+ASM000078,DEC000107,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP010""}",True,False
+ASM000079,DEC000108,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 696, ""observed_value"": 608, ""entity"": ""item:SKU050""}",True,False
+ASM000080,DEC000108,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000081,DEC000110,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 215, ""observed_value"": 301, ""entity"": ""item:SKU024:week:2025-05-12""}",True,False
+ASM000082,DEC000110,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000083,DEC000118,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000084,DEC000118,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1294, ""observed_value"": 1167, ""entity"": ""item:SKU007""}",True,False
+ASM000085,DEC000119,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 183, ""observed_value"": 286, ""entity"": ""item:SKU008:week:2025-05-12""}",True,False
+ASM000086,DEC000119,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 884, ""observed_value"": 795, ""entity"": ""item:SKU008""}",True,False
+ASM000087,DEC000121,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000088,DEC000121,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 315, ""observed_value"": 485, ""entity"": ""item:SKU028:week:2025-05-12""}",True,False
+ASM000089,DEC000123,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000090,DEC000123,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 107, ""observed_value"": 147, ""entity"": ""item:SKU037:week:2025-05-12""}",True,False
+ASM000091,DEC000124,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 333, ""observed_value"": 318, ""entity"": ""item:SKU021""}",True,False
+ASM000092,DEC000124,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",True,False
+ASM000093,DEC000129,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000094,DEC000129,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000095,DEC000130,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 188, ""observed_value"": 286, ""entity"": ""item:SKU013:week:2025-05-19""}",True,False
+ASM000096,DEC000130,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 338, ""observed_value"": 311, ""entity"": ""item:SKU013""}",True,False
+ASM000097,DEC000133,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000098,DEC000133,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000099,DEC000134,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000100,DEC000134,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000101,DEC000137,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 345, ""observed_value"": 320, ""entity"": ""item:SKU006""}",True,False
+ASM000102,DEC000137,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP010""}",True,False
+ASM000103,DEC000138,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000104,DEC000138,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000105,DEC000145,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 654, ""observed_value"": 583, ""entity"": ""item:SKU050""}",True,False
+ASM000106,DEC000145,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000107,DEC000147,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000108,DEC000147,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 530, ""observed_value"": 519, ""entity"": ""item:SKU043""}",True,False
+ASM000109,DEC000150,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 407, ""observed_value"": 561, ""entity"": ""item:SKU020:week:2025-05-26""}",True,False
+ASM000110,DEC000150,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 553, ""observed_value"": 517, ""entity"": ""item:SKU020""}",True,False
+ASM000111,DEC000153,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 529, ""observed_value"": 604, ""entity"": ""item:SKU028:week:2025-05-26""}",True,False
+ASM000112,DEC000153,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000113,DEC000162,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000114,DEC000162,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 413, ""observed_value"": 388, ""entity"": ""item:SKU039""}",True,False
+ASM000115,DEC000163,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000116,DEC000163,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 90, ""observed_value"": 114, ""entity"": ""item:SKU009:week:2025-05-26""}",True,False
+ASM000117,DEC000166,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 303, ""observed_value"": 284, ""entity"": ""item:SKU034""}",True,False
+ASM000118,DEC000166,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 231, ""observed_value"": 328, ""entity"": ""item:SKU034:week:2025-05-26""}",True,False
+ASM000119,DEC000167,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1751, ""observed_value"": 1490, ""entity"": ""item:SKU003""}",True,False
+ASM000120,DEC000167,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000121,DEC000170,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000122,DEC000170,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 462, ""observed_value"": 436, ""entity"": ""item:SKU031""}",True,False
+ASM000123,DEC000171,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 358, ""observed_value"": 421, ""entity"": ""item:SKU036:week:2025-06-02""}",True,False
+ASM000124,DEC000171,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 968, ""observed_value"": 910, ""entity"": ""item:SKU036""}",True,False
+ASM000125,DEC000172,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000126,DEC000172,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 132, ""observed_value"": 198, ""entity"": ""item:SKU002:week:2025-06-02""}",True,False
+ASM000127,DEC000176,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000128,DEC000176,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000129,DEC000178,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 121, ""observed_value"": 139, ""entity"": ""item:SKU001:week:2025-06-02""}",True,False
+ASM000130,DEC000178,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000131,DEC000186,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000132,DEC000186,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 385, ""observed_value"": 462, ""entity"": ""item:SKU029:week:2025-06-02""}",True,False
+ASM000133,DEC000187,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 178, ""observed_value"": 258, ""entity"": ""item:SKU050:week:2025-06-02""}",True,False
+ASM000134,DEC000187,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000135,DEC000189,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 10, ""entity"": ""supplier:SUP009""}",True,False
+ASM000136,DEC000189,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 215, ""observed_value"": 344, ""entity"": ""item:SKU024:week:2025-06-09""}",True,False
+ASM000137,DEC000191,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000138,DEC000191,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",True,False
+ASM000139,DEC000193,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 305, ""observed_value"": 453, ""entity"": ""item:SKU020:week:2025-06-09""}",True,False
+ASM000140,DEC000193,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 20, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000141,DEC000194,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 196, ""observed_value"": 171, ""entity"": ""item:SKU022""}",True,False
+ASM000142,DEC000194,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000143,DEC000195,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 8, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",True,False
+ASM000144,DEC000195,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 425, ""observed_value"": 546, ""entity"": ""item:SKU033:week:2025-06-09""}",True,False
+ASM000145,DEC000200,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000146,DEC000200,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 301, ""observed_value"": 298, ""entity"": ""item:SKU005""}",True,False
+ASM000147,DEC000201,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000148,DEC000201,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 545, ""observed_value"": 470, ""entity"": ""item:SKU017""}",True,False
+ASM000149,DEC000202,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 136, ""observed_value"": 174, ""entity"": ""item:SKU034:week:2025-06-09""}",True,False
+ASM000150,DEC000202,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 400, ""observed_value"": 368, ""entity"": ""item:SKU034""}",True,False
+ASM000151,DEC000203,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000152,DEC000203,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 482, ""observed_value"": 437, ""entity"": ""item:SKU037""}",True,False
+ASM000153,DEC000204,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 10, ""observed_value"": 7, ""entity"": ""supplier:SUP010""}",True,False
+ASM000154,DEC000204,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP010""}",True,False
+ASM000155,DEC000205,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 10, ""observed_value"": 8, ""entity"": ""supplier:SUP001""}",True,False
+ASM000156,DEC000205,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 138, ""observed_value"": 166, ""entity"": ""item:SKU030:week:2025-06-09""}",True,False
+ASM000157,DEC000213,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 300, ""observed_value"": 358, ""entity"": ""item:SKU021:week:2025-06-16""}",True,False
+ASM000158,DEC000213,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",True,False
+ASM000159,DEC000215,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000160,DEC000215,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000161,DEC000216,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000162,DEC000216,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1601, ""observed_value"": 1338, ""entity"": ""item:SKU004""}",True,False
+ASM000163,DEC000224,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000164,DEC000224,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 768, ""observed_value"": 734, ""entity"": ""item:SKU049""}",True,False
+ASM000165,DEC000226,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 254, ""observed_value"": 333, ""entity"": ""item:SKU050:week:2025-06-16""}",True,False
+ASM000166,DEC000226,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000167,DEC000230,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000168,DEC000230,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 325, ""observed_value"": 373, ""entity"": ""item:SKU008:week:2025-06-16""}",True,False
+ASM000169,DEC000233,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000170,DEC000233,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000171,DEC000238,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 170, ""observed_value"": 165, ""entity"": ""item:SKU022""}",True,False
+ASM000172,DEC000238,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000173,DEC000240,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",True,False
+ASM000174,DEC000240,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 467, ""observed_value"": 466, ""entity"": ""item:SKU021""}",True,False
+ASM000175,DEC000242,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 395, ""observed_value"": 388, ""entity"": ""item:SKU009""}",True,False
+ASM000176,DEC000242,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000177,DEC000243,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 515, ""observed_value"": 728, ""entity"": ""item:SKU018:week:2025-06-23""}",True,False
+ASM000178,DEC000243,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1404, ""observed_value"": 1328, ""entity"": ""item:SKU018""}",True,False
+ASM000179,DEC000244,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",True,False
+ASM000180,DEC000244,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 866, ""observed_value"": 728, ""entity"": ""item:SKU040""}",True,False
+ASM000181,DEC000245,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 357, ""observed_value"": 312, ""entity"": ""item:SKU005""}",True,False
+ASM000182,DEC000245,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000183,DEC000246,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 457, ""observed_value"": 402, ""entity"": ""item:SKU027""}",True,False
+ASM000184,DEC000246,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000185,DEC000254,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000186,DEC000254,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 311, ""observed_value"": 351, ""entity"": ""item:SKU042:week:2025-06-23""}",True,False
+ASM000187,DEC000255,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 178, ""observed_value"": 230, ""entity"": ""item:SKU012:week:2025-06-30""}",True,False
+ASM000188,DEC000255,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP009""}",True,False
+ASM000189,DEC000263,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000190,DEC000263,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000191,DEC000265,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 190, ""observed_value"": 246, ""entity"": ""item:SKU050:week:2025-06-30""}",True,False
+ASM000192,DEC000265,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000193,DEC000266,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP010""}",True,False
+ASM000194,DEC000266,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 355, ""observed_value"": 317, ""entity"": ""item:SKU006""}",True,False
+ASM000195,DEC000267,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000196,DEC000267,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 685, ""observed_value"": 589, ""entity"": ""item:SKU015""}",True,False
+ASM000197,DEC000269,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 608, ""observed_value"": 811, ""entity"": ""item:SKU031:week:2025-06-30""}",True,False
+ASM000198,DEC000269,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000199,DEC000276,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000200,DEC000276,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 462, ""observed_value"": 461, ""entity"": ""item:SKU017""}",True,False
+ASM000201,DEC000278,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 331, ""observed_value"": 393, ""entity"": ""item:SKU028:week:2025-07-07""}",True,False
+ASM000202,DEC000278,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000203,DEC000282,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 7, ""entity"": ""supplier:SUP010""}",True,False
+ASM000204,DEC000282,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 480, ""observed_value"": 459, ""entity"": ""item:SKU023""}",True,False
+ASM000205,DEC000284,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000206,DEC000284,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 179, ""observed_value"": 200, ""entity"": ""item:SKU039:week:2025-07-07""}",True,False
+ASM000207,DEC000288,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000208,DEC000288,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 773, ""observed_value"": 761, ""entity"": ""item:SKU008""}",True,False
+ASM000209,DEC000289,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1392, ""observed_value"": 1287, ""entity"": ""item:SKU020""}",True,False
+ASM000210,DEC000289,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 19, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000211,DEC000290,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000212,DEC000290,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 933, ""observed_value"": 896, ""entity"": ""item:SKU014""}",True,False
+ASM000213,DEC000294,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",True,False
+ASM000214,DEC000294,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1131, ""observed_value"": 944, ""entity"": ""item:SKU032""}",True,False
+ASM000215,DEC000298,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000216,DEC000298,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1587, ""observed_value"": 1367, ""entity"": ""item:SKU029""}",True,False
+ASM000217,DEC000307,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 19, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000218,DEC000307,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 444, ""observed_value"": 440, ""entity"": ""item:SKU010""}",True,False
+ASM000219,DEC000308,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 13, ""observed_value"": 8, ""entity"": ""supplier:SUP001""}",True,False
+ASM000220,DEC000308,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000221,DEC000312,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000222,DEC000312,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 454, ""observed_value"": 452, ""entity"": ""item:SKU003""}",True,False
+ASM000223,DEC000317,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 20, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000224,DEC000317,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 277, ""observed_value"": 257, ""entity"": ""item:SKU049""}",True,False
+ASM000225,DEC000320,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 680, ""observed_value"": 662, ""entity"": ""item:SKU029""}",True,False
+ASM000226,DEC000320,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000227,DEC000322,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 13, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000228,DEC000322,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 173, ""observed_value"": 228, ""entity"": ""item:SKU050:week:2025-07-21""}",True,False
+ASM000229,DEC000323,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000230,DEC000323,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 948, ""observed_value"": 867, ""entity"": ""item:SKU034""}",True,False
+ASM000231,DEC000326,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 10, ""entity"": ""supplier:SUP009""}",True,False
+ASM000232,DEC000326,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000233,DEC000331,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 718, ""observed_value"": 712, ""entity"": ""item:SKU048""}",True,False
+ASM000234,DEC000331,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 202, ""observed_value"": 311, ""entity"": ""item:SKU048:week:2025-07-21""}",True,False
+ASM000235,DEC000333,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000236,DEC000333,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 475, ""observed_value"": 547, ""entity"": ""item:SKU018:week:2025-07-28""}",True,False
+ASM000237,DEC000335,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 765, ""observed_value"": 651, ""entity"": ""item:SKU024""}",True,False
+ASM000238,DEC000335,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 178, ""observed_value"": 242, ""entity"": ""item:SKU024:week:2025-07-28""}",True,False
+ASM000239,DEC000336,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 276, ""observed_value"": 363, ""entity"": ""item:SKU014:week:2025-07-28""}",True,False
+ASM000240,DEC000336,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 997, ""observed_value"": 873, ""entity"": ""item:SKU014""}",True,False
+ASM000241,DEC000343,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 7, ""observed_value"": 6, ""entity"": ""supplier:SUP005""}",True,False
+ASM000242,DEC000343,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 173, ""observed_value"": 164, ""entity"": ""item:SKU016""}",True,False
+ASM000243,DEC000347,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 7, ""entity"": ""supplier:SUP008""}",True,False
+ASM000244,DEC000347,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 311, ""observed_value"": 310, ""entity"": ""item:SKU005""}",True,False
+ASM000245,DEC000348,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000246,DEC000348,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 416, ""observed_value"": 393, ""entity"": ""item:SKU009""}",True,False
+ASM000247,DEC000354,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000248,DEC000354,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000249,DEC000359,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000250,DEC000359,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 326, ""observed_value"": 310, ""entity"": ""item:SKU001""}",True,False
+ASM000251,DEC000361,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000252,DEC000361,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 243, ""observed_value"": 288, ""entity"": ""item:SKU041:week:2025-08-04""}",True,False
+ASM000253,DEC000363,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1814, ""observed_value"": 1535, ""entity"": ""item:SKU003""}",True,False
+ASM000254,DEC000363,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 309, ""observed_value"": 397, ""entity"": ""item:SKU003:week:2025-08-04""}",True,False
+ASM000255,DEC000365,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 844, ""observed_value"": 764, ""entity"": ""item:SKU049""}",True,False
+ASM000256,DEC000365,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000257,DEC000367,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 472, ""observed_value"": 429, ""entity"": ""item:SKU014""}",True,False
+ASM000258,DEC000367,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 226, ""observed_value"": 253, ""entity"": ""item:SKU014:week:2025-08-04""}",True,False
+ASM000259,DEC000374,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000260,DEC000374,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 471, ""observed_value"": 395, ""entity"": ""item:SKU027""}",True,False
+ASM000261,DEC000376,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 420, ""observed_value"": 572, ""entity"": ""item:SKU011:week:2025-08-11""}",True,False
+ASM000262,DEC000376,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 9, ""observed_value"": 8, ""entity"": ""supplier:SUP001""}",True,False
+ASM000263,DEC000386,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000264,DEC000386,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000265,DEC000394,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000266,DEC000394,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 162, ""observed_value"": 151, ""entity"": ""item:SKU016""}",True,False
+ASM000267,DEC000403,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 372, ""observed_value"": 455, ""entity"": ""item:SKU008:week:2025-08-18""}",True,False
+ASM000268,DEC000403,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000269,DEC000410,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 585, ""observed_value"": 524, ""entity"": ""item:SKU012""}",True,False
+ASM000270,DEC000410,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000271,DEC000416,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 188, ""observed_value"": 167, ""entity"": ""item:SKU010""}",True,False
+ASM000272,DEC000416,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000273,DEC000417,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000274,DEC000417,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 402, ""observed_value"": 524, ""entity"": ""item:SKU029:week:2025-08-25""}",True,False
+ASM000275,DEC000419,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP009""}",True,False
+ASM000276,DEC000419,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000277,DEC000425,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000278,DEC000425,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1432, ""observed_value"": 1339, ""entity"": ""item:SKU004""}",True,False
+ASM000279,DEC000426,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 478, ""observed_value"": 562, ""entity"": ""item:SKU011:week:2025-08-25""}",True,False
+ASM000280,DEC000426,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1085, ""observed_value"": 979, ""entity"": ""item:SKU011""}",True,False
+ASM000281,DEC000427,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 353, ""observed_value"": 296, ""entity"": ""item:SKU049""}",True,False
+ASM000282,DEC000427,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP006""}",True,False
+ASM000283,DEC000431,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000284,DEC000431,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 416, ""observed_value"": 374, ""entity"": ""item:SKU009""}",True,False
+ASM000285,DEC000432,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000286,DEC000432,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 529, ""observed_value"": 461, ""entity"": ""item:SKU017""}",True,False
+ASM000287,DEC000435,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 321, ""observed_value"": 397, ""entity"": ""item:SKU041:week:2025-08-25""}",True,False
+ASM000288,DEC000435,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 632, ""observed_value"": 554, ""entity"": ""item:SKU041""}",True,False
+ASM000289,DEC000437,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 287, ""observed_value"": 386, ""entity"": ""item:SKU033:week:2025-08-25""}",True,False
+ASM000290,DEC000437,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000291,DEC000439,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 6, ""entity"": ""supplier:SUP005""}",True,False
+ASM000292,DEC000439,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 178, ""observed_value"": 163, ""entity"": ""item:SKU016""}",True,False
+ASM000293,DEC000445,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP007""}",True,False
+ASM000294,DEC000445,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 322, ""observed_value"": 314, ""entity"": ""item:SKU013""}",True,False
+ASM000295,DEC000447,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 851, ""observed_value"": 738, ""entity"": ""item:SKU040""}",True,False
+ASM000296,DEC000447,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000297,DEC000448,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 464, ""observed_value"": 532, ""entity"": ""item:SKU018:week:2025-09-01""}",True,False
+ASM000298,DEC000448,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000299,DEC000449,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 17, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000300,DEC000449,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 84, ""observed_value"": 119, ""entity"": ""item:SKU044:week:2025-09-01""}",True,False
+ASM000301,DEC000453,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000302,DEC000453,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 431, ""observed_value"": 547, ""entity"": ""item:SKU026:week:2025-09-01""}",True,False
+ASM000303,DEC000454,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000304,DEC000454,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 198, ""observed_value"": 233, ""entity"": ""item:SKU043:week:2025-09-01""}",True,False
+ASM000305,DEC000455,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 597, ""observed_value"": 727, ""entity"": ""item:SKU004:week:2025-09-01""}",True,False
+ASM000306,DEC000455,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000307,DEC000460,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 14, ""entity"": ""supplier:SUP002""}",True,False
+ASM000308,DEC000460,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 108, ""observed_value"": 169, ""entity"": ""item:SKU037:week:2025-09-01""}",True,False
+ASM000309,DEC000464,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000310,DEC000464,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 121, ""observed_value"": 187, ""entity"": ""item:SKU035:week:2025-09-08""}",True,False
+ASM000311,DEC000467,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 297, ""observed_value"": 365, ""entity"": ""item:SKU008:week:2025-09-08""}",True,False
+ASM000312,DEC000467,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 943, ""observed_value"": 822, ""entity"": ""item:SKU008""}",True,False
+ASM000313,DEC000470,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 246, ""observed_value"": 319, ""entity"": ""item:SKU002:week:2025-09-08""}",True,False
+ASM000314,DEC000470,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 603, ""observed_value"": 513, ""entity"": ""item:SKU002""}",True,False
+ASM000315,DEC000472,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1230, ""observed_value"": 1210, ""entity"": ""item:SKU007""}",True,False
+ASM000316,DEC000472,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 14, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000317,DEC000475,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 201, ""observed_value"": 259, ""entity"": ""item:SKU036:week:2025-09-08""}",True,False
+ASM000318,DEC000475,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 15, ""observed_value"": 10, ""entity"": ""supplier:SUP009""}",True,False
+ASM000319,DEC000476,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000320,DEC000476,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 481, ""observed_value"": 400, ""entity"": ""item:SKU027""}",True,False
+ASM000321,DEC000478,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 999, ""observed_value"": 909, ""entity"": ""item:SKU038""}",True,False
+ASM000322,DEC000478,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP001""}",True,False
+ASM000323,DEC000480,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 457, ""observed_value"": 433, ""entity"": ""item:SKU013""}",True,False
+ASM000324,DEC000480,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP007""}",True,False
+ASM000325,DEC000483,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 137, ""observed_value"": 187, ""entity"": ""item:SKU005:week:2025-09-08""}",True,False
+ASM000326,DEC000483,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 351, ""observed_value"": 316, ""entity"": ""item:SKU005""}",True,False
+ASM000327,DEC000487,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1076, ""observed_value"": 951, ""entity"": ""item:SKU011""}",True,False
+ASM000328,DEC000487,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 8, ""entity"": ""supplier:SUP001""}",True,False
+ASM000329,DEC000488,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 66, ""observed_value"": 98, ""entity"": ""item:SKU016:week:2025-09-15""}",True,False
+ASM000330,DEC000488,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP005""}",True,False
+ASM000331,DEC000490,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000332,DEC000490,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 663, ""observed_value"": 565, ""entity"": ""item:SKU050""}",True,False
+ASM000333,DEC000498,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 20, ""observed_value"": 15, ""entity"": ""supplier:SUP007""}",True,False
+ASM000334,DEC000498,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP007""}",True,False
+ASM000335,DEC000499,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 586, ""observed_value"": 570, ""entity"": ""item:SKU015""}",True,False
+ASM000336,DEC000499,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP009""}",True,False
+ASM000337,DEC000500,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000338,DEC000500,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 164, ""observed_value"": 209, ""entity"": ""item:SKU017:week:2025-09-15""}",True,False
+ASM000339,DEC000503,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000340,DEC000503,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 958, ""observed_value"": 870, ""entity"": ""item:SKU032""}",True,False
+ASM000341,DEC000506,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 12, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000342,DEC000506,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000343,DEC000508,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 11, ""observed_value"": 10, ""entity"": ""supplier:SUP004""}",True,False
+ASM000344,DEC000508,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP004""}",True,False
+ASM000345,DEC000512,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 1491, ""observed_value"": 1374, ""entity"": ""item:SKU004""}",True,False
+ASM000346,DEC000512,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000347,DEC000513,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP010""}",True,False
+ASM000348,DEC000513,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 713, ""observed_value"": 626, ""entity"": ""item:SKU047""}",True,False
+ASM000349,DEC000514,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 104, ""observed_value"": 116, ""entity"": ""item:SKU001:week:2025-09-22""}",True,False
+ASM000350,DEC000514,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP002""}",True,False
+ASM000351,DEC000524,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 232, ""observed_value"": 328, ""entity"": ""item:SKU023:week:2025-09-22""}",True,False
+ASM000352,DEC000524,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 515, ""observed_value"": 467, ""entity"": ""item:SKU023""}",True,False
+ASM000353,DEC000528,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP003""}",True,False
+ASM000354,DEC000528,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 398, ""observed_value"": 382, ""entity"": ""item:SKU009""}",True,False
+ASM000355,DEC000532,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 204, ""observed_value"": 194, ""entity"": ""item:SKU017""}",True,False
+ASM000356,DEC000532,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 13, ""entity"": ""supplier:SUP003""}",True,False
+ASM000357,DEC000535,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 29, ""observed_value"": 41, ""entity"": ""item:SKU001:week:2025-09-29""}",True,False
+ASM000358,DEC000535,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 167, ""observed_value"": 161, ""entity"": ""item:SKU001""}",True,False
+ASM000359,DEC000536,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 18, ""observed_value"": 15, ""entity"": ""supplier:SUP007""}",True,False
+ASM000360,DEC000536,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 74, ""observed_value"": 106, ""entity"": ""item:SKU013:week:2025-09-29""}",True,False
+ASM000361,DEC000537,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 69, ""observed_value"": 99, ""entity"": ""item:SKU034:week:2025-09-29""}",True,False
+ASM000362,DEC000537,"{""condition_name"": ""lead_time_days"", ""op"": ""<="", ""value"": 16, ""observed_value"": 15, ""entity"": ""supplier:SUP006""}",True,False
+ASM000363,DEC000538,"{""condition_name"": ""supplier_risk"", ""field"": ""strike_status"", ""op"": ""=="", ""value"": ""clear"", ""observed_value"": ""clear"", ""entity"": ""supplier:SUP008""}",True,False
+ASM000364,DEC000538,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 131, ""observed_value"": 156, ""entity"": ""item:SKU040:week:2025-09-29""}",True,False
+ASM000365,DEC000539,"{""condition_name"": ""forecast_qty"", ""op"": "">="", ""value"": 53, ""observed_value"": 64, ""entity"": ""item:SKU043:week:2025-09-29""}",True,False
+ASM000366,DEC000539,"{""condition_name"": ""stock_qty"", ""op"": ""<"", ""value"": 631, ""observed_value"": 526, ""entity"": ""item:SKU043""}",True,False
