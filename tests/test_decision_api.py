@@ -120,3 +120,87 @@ def test_metrics_route_reports_extraction_and_action_rates(client: TestClient) -
     assert set(body) == {"flags_per_week", "action_rate", "extraction_correction_rate"}
     assert body["action_rate"] == 0.0
     assert body["extraction_correction_rate"] == 0.0
+
+
+def _fake_llm(monkeypatch: pytest.MonkeyPatch, **overrides: object) -> list[str]:
+    """Patch the suggestion LLM call, returning the list of prompts it received."""
+    prompts: list[str] = []
+
+    def fake_complete(system: str, user: str, schema: type) -> object:
+        prompts.append(user)
+        fields = {
+            "action": "cancel",
+            "headline": "Cancel this order now.",
+            "rationale": "Stock is far below the level this order assumed, so keeping it costs more than cancelling.",
+            "risks": ["The supplier may dispute the cancellation."],
+            "next_steps": ["Notify the supplier before the window closes."],
+        }
+        fields.update(overrides)
+        return schema.model_validate(fields)
+
+    monkeypatch.setattr("app.services.suggestion.complete_json", fake_complete)
+    return prompts
+
+
+def test_suggestion_returns_llm_action_and_agreement(client: TestClient, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A grounded LLM suggestion is returned and compared with the deterministic recommendation."""
+    prompts = _fake_llm(monkeypatch)
+    client.get("/decisions/DEC1", params={"as_of": AS_OF})
+
+    response = client.post("/decisions/DEC1/suggestion", params={"as_of": AS_OF})
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["suggested_action"] == "cancel"
+    assert body["model_recommendation"] == "cancel"
+    assert body["agrees_with_model"] is True
+    assert body["risks"] and body["next_steps"]
+    assert "total_cost" in prompts[0]
+
+
+def test_suggestion_flags_disagreement_with_deterministic_model(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """When the LLM picks a different action, the response says so."""
+    _fake_llm(monkeypatch, action="delay")
+
+    body = client.post("/decisions/DEC1/suggestion", params={"as_of": AS_OF}).json()
+
+    assert body["suggested_action"] == "delay"
+    assert body["agrees_with_model"] is False
+
+
+def test_suggestion_rejects_ungrounded_numbers(client: TestClient, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A suggestion that states a figure absent from the breakdown is refused, not shown."""
+    _fake_llm(monkeypatch, rationale="Cancelling saves about 987654 rupees.")
+
+    response = client.post("/decisions/DEC1/suggestion", params={"as_of": AS_OF})
+
+    assert response.status_code == 503
+
+
+def test_suggestion_unavailable_when_llm_fails(client: TestClient, monkeypatch: pytest.MonkeyPatch) -> None:
+    """An LLM outage surfaces as 503 rather than a 500."""
+    def broken(system: str, user: str, schema: type) -> object:
+        raise RuntimeError("GROQ_API_KEY is required for LLM requests")
+
+    monkeypatch.setattr("app.services.suggestion.complete_json", broken)
+
+    assert client.post("/decisions/DEC1/suggestion", params={"as_of": AS_OF}).status_code == 503
+
+
+def test_suggestion_404_for_unknown_decision(client: TestClient) -> None:
+    """An unknown decision returns 404."""
+    assert client.post("/decisions/NOPE/suggestion").status_code == 404
+
+
+def test_every_score_carries_deterministic_reasoning(client: TestClient) -> None:
+    """Brief cards and decision detail always include reasoning, with no LLM involved."""
+    card = client.get("/brief", params={"as_of": AS_OF}).json()["cards"][0]["score"]
+    detail = client.get("/decisions/DEC1", params={"as_of": AS_OF}).json()["score"]
+
+    for score in (card, detail):
+        reasoning = " ".join(score["reasoning"])
+        assert "no longer holds" in reasoning
+        assert "Recommended action: cancel" in reasoning
+        assert "Confidence is" in reasoning

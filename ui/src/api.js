@@ -33,6 +33,7 @@ async function request(method, path, { params, body } = {}) {
 export const api = {
   brief: (asOf, limit, explain) => request("GET", "/brief", { params: { as_of: asOf, limit, explain } }),
   decision: (id, asOf) => request("GET", `/decisions/${encodeURIComponent(id)}`, { params: { as_of: asOf } }),
+  suggest: (id, asOf) => request("POST", `/decisions/${encodeURIComponent(id)}/suggestion`, { params: { as_of: asOf } }),
   metrics: (asOf) => request("GET", "/metrics", { params: { as_of: asOf } }),
   recheck: (asOf) => request("POST", "/events/recheck", { params: { as_of: asOf } }),
   act: (id, action, note) =>

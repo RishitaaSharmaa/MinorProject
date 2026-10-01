@@ -68,6 +68,7 @@ class DecisionScoreOut(BaseModel):
     confidence: str
     confidence_reasons: list[str]
     assumptions_used: dict[str, Any]
+    reasoning: list[str]
 
 
 class BriefCardOut(BaseModel):
@@ -161,3 +162,16 @@ class RecheckResponse(BaseModel):
     assumptions_rechecked: int
     violations: int
     recoveries: int
+
+
+class SuggestionResponse(BaseModel):
+    """An advisory, LLM-written action suggestion alongside the deterministic recommendation."""
+
+    decision_id: str
+    suggested_action: Literal["keep", "reduce", "delay", "cancel"]
+    model_recommendation: str
+    agrees_with_model: bool
+    headline: str
+    rationale: str
+    risks: list[str]
+    next_steps: list[str]

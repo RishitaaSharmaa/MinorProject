@@ -23,24 +23,27 @@ Loading the dataset never writes operational `Assumption` rows by itself -- thos
 docker compose exec app python -m scripts.seed_review_workflow --as-of 2025-09-30
 ```
 
+`POST /decisions/{id}/suggestion?as_of=YYYY-MM-DD` asks the LLM what to do about a decision whose assumption has broken (keep, reduce, delay or cancel), with a rationale, risks and next steps, and says whether it agrees with the deterministic recommendation. It is advisory only: it never changes flagging or ranking, its action is restricted to those four values, and it is refused (503) if it cites any figure not in the decision's own cost breakdown. It requires `GROQ_API_KEY`; it returns 409 for a decision with no broken assumption. The console shows it as a "Get suggestion" panel on each brief card and on Decision Detail.
+
 Rerunning it is safe -- it reseeds cleanly rather than duplicating rows. `POST /decisions/{id}/extract` returns and persists structured/free-text assumption proposals. Review them with `POST /decisions/{id}/assumptions/confirm`, sending edited conditions under `accepted` and proposal IDs under `rejected_proposal_ids`; original and final values plus `accepted`/`edited`/`rejected` dispositions are retained for correction metrics. Confirming a proposal does not, by itself, mark it violated -- only a recheck pass does that:
 
 ```
 POST /events/recheck?as_of=YYYY-MM-DD
 ```
 
-replays every recorded state event up to that date and resets every non-retired assumption's status to match a deterministic point-in-time snapshot (safe to call repeatedly, and at any date, in any order). `GET /brief`, `GET /decisions/{id}`, and `GET /metrics` all read whatever `Assumption.status` the last recheck left behind, so call `/events/recheck` for a given `as_of` before reading any of them for that same date -- `ui/app.py` (below) does this automatically whenever its date slider moves. Run the extraction baseline with `docker compose exec app python -m scripts.eval_extraction`. It reports per-condition precision, recall, and F1 against the isolated GT tables. Optional hand-authored examples belong in `data_generator/gold_set/*.jsonl` as `{"decision": {"id": "...", "free_text_reason": "...", "item_id": "...", "supplier_id": "..."}, "conditions": [{"type": "stock_lt", "entity_ref": "item:SKU1", "op": "<", "value": 10}]}`.
+replays every recorded state event up to that date and resets every non-retired assumption's status to match a deterministic point-in-time snapshot (safe to call repeatedly, and at any date, in any order). `GET /brief`, `GET /decisions/{id}`, and `GET /metrics` all read whatever `Assumption.status` the last recheck left behind, so call `/events/recheck` for a given `as_of` before reading any of them for that same date -- the React console in `ui/` (below) does this automatically whenever its date slider moves. Run the extraction baseline with `docker compose exec app python -m scripts.eval_extraction`. It reports per-condition precision, recall, and F1 against the isolated GT tables. Optional hand-authored examples belong in `data_generator/gold_set/*.jsonl` as `{"decision": {"id": "...", "free_text_reason": "...", "item_id": "...", "supplier_id": "..."}, "conditions": [{"type": "stock_lt", "entity_ref": "item:SKU1", "op": "<", "value": 10}]}`.
 
-## Streamlit console
+## React console
 
-`ui/app.py` is a four-page review console (Morning Brief, Confirm Assumptions, Decision Detail, Metrics) that talks only to the API, never the database. It is not part of the Docker image; run it separately once the API is up:
+`ui/` is a React (Vite) app. Its landing page explains what DecisionWatch is, the problem it solves and how it helps an enterprise; the console (`/console`) has four pages (Morning Brief, Confirm Assumptions, Decision Detail, Metrics) that talk only to the API, never the database. It is not part of the Docker image; run it separately once the API is up (requires Node.js 18+):
 
 ```powershell
-python -m pip install -r requirements.txt
-streamlit run ui/app.py
+cd ui
+npm install
+npm run dev
 ```
 
-Point it at a non-default API with the "API URL" field in the sidebar (defaults to `http://localhost:8000`). The sidebar's "Simulated date" slider drives every page and automatically calls `/events/recheck` for that date before rendering, so moving it forward and back in time replays the dataset's history live.
+Open `http://localhost:5173`. In development, requests to `/api/*` are proxied to `http://localhost:8000`; set `VITE_PROXY_TARGET` to proxy elsewhere, or `VITE_API_URL` (see `ui/.env.example`) to build against an API on another origin, which then needs CORS enabled. The console's "Simulated date" slider drives every page and automatically calls `/events/recheck` for that date before rendering, so moving it forward and back in time replays the dataset's history live. `npm run build` writes a static bundle to `ui/dist/`.
 
 For local development outside Docker, install with `python -m pip install -e ".[dev]"`, set `DATABASE_URL` to a local PostgreSQL URL, run `alembic upgrade head`, and start `uvicorn app.main:app --reload`. `python -m pytest` runs the tests. The `/app` code uses only operational models; answer-key tables are populated only by the loader and are never imported by the application package.
 

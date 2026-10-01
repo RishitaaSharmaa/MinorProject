@@ -1,4 +1,5 @@
 .env
 __pycache__/
 .pytest_cache/
-.streamlit/secrets.toml
+ui/node_modules/
+ui/dist/

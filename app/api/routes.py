@@ -20,6 +20,7 @@ from app.api.schemas import (
     DecisionScoreOut,
     MetricsResponse,
     RecheckResponse,
+    SuggestionResponse,
     TimelineEventOut,
 )
 from app.connectors.factory import get_connector
@@ -29,8 +30,10 @@ from app.services.brief import generate_brief
 from app.services.conditions import Condition, ProposedCondition
 from app.services.extraction import extract_assumptions
 from app.services.metrics import compute_metrics
+from app.services.reasoning import explain_score
 from app.services.watcher_runner import recheck_assumptions
 from app.services.scoring import DecisionScore, score_decision
+from app.services.suggestion import SuggestionUnavailable, suggest_action
 
 router = APIRouter()
 
@@ -192,24 +195,8 @@ def get_decision_detail(
     effective_as_of = as_of or date.today()
 
     assumptions = list(session.scalars(select(Assumption).where(Assumption.decision_id == decision_id)))
-    violated = next((assumption for assumption in assumptions if assumption.status == "violated"), None)
-    score = None
-    if violated is not None:
-        connector = get_connector(session)
-        score = score_decision(session, connector, decision, violated, effective_as_of)
-
-    timeline_filters = []
-    if decision.item_id:
-        timeline_filters.append((StateEvent.entity_type == "item") & (StateEvent.entity_id == decision.item_id))
-    if decision.supplier_id:
-        timeline_filters.append(
-            (StateEvent.entity_type == "supplier") & (StateEvent.entity_id == decision.supplier_id)
-        )
-    events: list[StateEvent] = []
-    if timeline_filters:
-        events = list(session.scalars(
-            select(StateEvent).where(or_(*timeline_filters)).order_by(StateEvent.event_time.asc())
-        ))
+    score = _current_score(session, decision, assumptions, effective_as_of)
+    events = _timeline_events(session, decision)
 
     return DecisionDetailResponse(
         id=decision.id,
@@ -243,6 +230,39 @@ def get_decision_detail(
     )
 
 
+@router.post("/decisions/{decision_id}/suggestion", response_model=SuggestionResponse)
+def suggest_decision_action(
+    decision_id: str,
+    as_of: date | None = Query(default=None),
+    session: Session = Depends(get_db),
+) -> SuggestionResponse:
+    """Return an advisory LLM suggestion for a decision whose assumption has broken.
+
+    Call `/events/recheck` for the same `as_of` first, as with `/decisions/{id}`.
+    """
+    decision = session.get(Decision, decision_id)
+    if decision is None:
+        raise HTTPException(status_code=404, detail=f"Decision not found: {decision_id}")
+    assumptions = list(session.scalars(select(Assumption).where(Assumption.decision_id == decision_id)))
+    score = _current_score(session, decision, assumptions, as_of or date.today())
+    if score is None:
+        raise HTTPException(status_code=409, detail="This decision has no broken assumption, so there is nothing to suggest.")
+    try:
+        suggestion = suggest_action(decision, score, _timeline_events(session, decision))
+    except SuggestionUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    return SuggestionResponse(
+        decision_id=suggestion.decision_id,
+        suggested_action=suggestion.suggested_action,
+        model_recommendation=suggestion.model_recommendation,
+        agrees_with_model=suggestion.agrees_with_model,
+        headline=suggestion.headline,
+        rationale=suggestion.rationale,
+        risks=list(suggestion.risks),
+        next_steps=list(suggestion.next_steps),
+    )
+
+
 @router.post("/decisions/{decision_id}/action", response_model=DecisionActionResponse)
 def act_on_decision(
     decision_id: str,
@@ -273,6 +293,32 @@ def get_metrics(
     )
 
 
+def _current_score(
+    session: Session, decision: Decision, assumptions: list[Assumption], as_of: date,
+) -> DecisionScore | None:
+    """Score a decision against its first violated assumption, if it has one."""
+    violated = next((assumption for assumption in assumptions if assumption.status == "violated"), None)
+    if violated is None:
+        return None
+    return score_decision(session, get_connector(session), decision, violated, as_of)
+
+
+def _timeline_events(session: Session, decision: Decision) -> list[StateEvent]:
+    """Return recorded state changes for the decision's item and supplier, oldest first."""
+    timeline_filters = []
+    if decision.item_id:
+        timeline_filters.append((StateEvent.entity_type == "item") & (StateEvent.entity_id == decision.item_id))
+    if decision.supplier_id:
+        timeline_filters.append(
+            (StateEvent.entity_type == "supplier") & (StateEvent.entity_id == decision.supplier_id)
+        )
+    if not timeline_filters:
+        return []
+    return list(session.scalars(
+        select(StateEvent).where(or_(*timeline_filters)).order_by(StateEvent.event_time.asc())
+    ))
+
+
 def _score_out(score: DecisionScore) -> DecisionScoreOut:
     """Convert a scoring dataclass into its API response schema."""
     return DecisionScoreOut(
@@ -301,4 +347,5 @@ def _score_out(score: DecisionScore) -> DecisionScoreOut:
         confidence=score.confidence,
         confidence_reasons=list(score.confidence_reasons),
         assumptions_used=score.assumptions_used,
+        reasoning=explain_score(score),
     )

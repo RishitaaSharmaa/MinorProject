@@ -8,6 +8,7 @@ appear in that card's own arithmetic breakdown.
 
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import date, datetime
 
@@ -21,10 +22,17 @@ from llm.client import complete_json
 
 _EXPLANATION_SYSTEM_PROMPT = (
     "Explain in exactly two short sentences why this procurement decision was flagged "
-    "and what is recommended. State only numbers that already appear in the supplied "
-    "breakdown, exactly as given. Never invent, round, or introduce any other figure."
+    "and what is recommended. A decision is flagged when the regret of keeping it exceeds the "
+    "switching cost of the recommended action; net_benefit is regret minus switching_cost. "
+    "State only numbers that already appear in the supplied data, exactly as given. "
+    "Never invent, round, or introduce any other figure."
 )
 _NUMBER_PATTERN = re.compile(r"-?\d[\d,]*(?:\.\d+)?")
+_EXPLANATION_WORKERS = 5
+_EXPLANATION_ATTEMPTS = 3
+_CACHE_LIMIT = 512
+#: Successful explanations keyed by their exact LLM input, so revisiting a date is instant.
+_explanation_cache: dict[str, str] = {}
 
 
 @dataclass(frozen=True)
@@ -73,10 +81,13 @@ def generate_brief(
     flagged = sorted((score for score in best_per_decision.values() if score.flagged), key=_rank_key)
     reviewed_and_kept = sum(1 for score in best_per_decision.values() if not score.flagged)
 
-    cards = tuple(
-        BriefCard(score=score, explanation=_explain(score) if explain else None)
-        for score in flagged[:limit]
-    )
+    shown = flagged[:limit]
+    if explain and shown:
+        with ThreadPoolExecutor(max_workers=_EXPLANATION_WORKERS) as pool:
+            explanations = list(pool.map(_explain, shown))
+    else:
+        explanations = [None] * len(shown)
+    cards = tuple(BriefCard(score=score, explanation=text) for score, text in zip(shown, explanations))
     return Brief(as_of=_as_date(as_of), cards=cards, reviewed_and_kept=reviewed_and_kept)
 
 
@@ -107,20 +118,32 @@ def _explain(score: DecisionScore) -> str | None:
         "days_to_window": score.days_to_window,
         "assumptions_used": score.assumptions_used,
     }
-    try:
-        result = complete_json(
-            _EXPLANATION_SYSTEM_PROMPT, json.dumps(user_payload, default=str), _Explanation
-        )
-    except Exception:
-        return None
-    if not _only_uses_grounded_numbers(result.explanation, score):
-        return None
-    return result.explanation
+    key = json.dumps(user_payload, default=str, sort_keys=True)
+    if key in _explanation_cache:
+        return _explanation_cache[key]
+    supplied = numbers_in(key)
+    for _ in range(_EXPLANATION_ATTEMPTS):
+        try:
+            result = complete_json(_EXPLANATION_SYSTEM_PROMPT, key, _Explanation)
+        except Exception:
+            continue
+        if not _only_uses_grounded_numbers(result.explanation, score, supplied):
+            continue
+        if len(_explanation_cache) >= _CACHE_LIMIT:
+            _explanation_cache.clear()
+        _explanation_cache[key] = result.explanation
+        return result.explanation
+    return None
 
 
-def _only_uses_grounded_numbers(text: str, score: DecisionScore) -> bool:
-    """Reject an explanation that states any number absent from the score's breakdown."""
-    allowed = _grounded_numbers(score)
+def numbers_in(payload: str) -> set[float]:
+    """Collect every number an LLM was actually shown, so citing them back is allowed."""
+    return {float(match.replace(",", "")) for match in _NUMBER_PATTERN.findall(payload)}
+
+
+def _only_uses_grounded_numbers(text: str, score: DecisionScore, extra_allowed: set[float] | None = None) -> bool:
+    """Reject text that states any number absent from the score's breakdown (or `extra_allowed`)."""
+    allowed = _grounded_numbers(score) | (extra_allowed or set())
     for match in _NUMBER_PATTERN.findall(text):
         stated = float(match.replace(",", ""))
         if not any(abs(stated - value) <= max(0.5, abs(value) * 0.01) for value in allowed):
@@ -137,7 +160,10 @@ def _grounded_numbers(score: DecisionScore) -> set[float]:
     if score.days_to_window is not None:
         values.add(float(score.days_to_window))
     for action_cost in score.actions.values():
-        values.update({action_cost.residual_cost, action_cost.fee, action_cost.in_transit, action_cost.sibling_impact})
+        values.update({
+            action_cost.residual_cost, action_cost.fee, action_cost.in_transit,
+            action_cost.sibling_impact, action_cost.switching_cost, action_cost.total_cost,
+        })
     return {round(value, 2) for value in values}
 
 

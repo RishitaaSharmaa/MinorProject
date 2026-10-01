@@ -110,3 +110,29 @@ def test_brief_covers_all_three_demo_archetypes(session: Session) -> None:
     decisions = {decision.id: decision for decision in session.query(Decision).all()}
     assert decisions["DEC-SAP"].is_override is False
     assert decisions["DEC-OVERRIDE"].is_override is True
+
+
+def test_explanations_are_generated_per_card_and_cached(session: Session, monkeypatch: pytest.MonkeyPatch) -> None:
+    """With explain on, every card gets a grounded explanation; repeat calls reuse the cache."""
+    from app.services import brief as brief_module
+
+    brief_module._explanation_cache.clear()
+    _decision(session, "DEC-A", item_id="SKU1", is_override=False)
+    _assumption(session, "DEC-A", {"type": "stock_gt", "entity_ref": "item:SKU1", "value": 100})
+    session.add(StockSnapshot(item_id="SKU1", date=AS_OF, qty_on_hand=10))
+    session.commit()
+    calls: list[str] = []
+
+    def fake_complete(system: str, user: str, schema: type) -> object:
+        calls.append(user)
+        return schema.model_validate({"explanation": "Flagged because stock fell. Cancel is recommended."})
+
+    monkeypatch.setattr("app.services.brief.complete_json", fake_complete)
+    connector = SyntheticERPConnector(session)
+
+    first = generate_brief(session, connector, AS_OF, explain=True)
+    second = generate_brief(session, connector, AS_OF, explain=True)
+
+    assert first.cards[0].explanation == "Flagged because stock fell. Cancel is recommended."
+    assert second.cards[0].explanation == first.cards[0].explanation
+    assert len(calls) == 1
