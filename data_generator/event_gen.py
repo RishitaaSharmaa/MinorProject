@@ -114,7 +114,7 @@ def generate_events(world: dict, procurement: dict, rng: np.random.Generator) ->
         if new_value is None or not _holds(condition, old_value) or _holds(condition, new_value):
             continue
         created = date.fromisoformat(decision["created_at"])
-        max_offset = max(1, (config.END_DATE - created).days)
+        max_offset = max(1, min(config.VIOLATION_EVENT_MAX_LAG_DAYS, (config.END_DATE - created).days))
         event_day = created + timedelta(days=int(rng.integers(1, max_offset + 1)))
         candidate = _make_event(
             f"EVT{next_id:05d}", condition["entity"], _condition_field(condition),

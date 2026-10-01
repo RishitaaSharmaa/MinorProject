@@ -96,6 +96,17 @@ CREATE TABLE commitments (
     linked_commitment_id TEXT REFERENCES commitments(id)
 );
 
+CREATE TABLE commitment_links (
+    id TEXT PRIMARY KEY,
+    from_commitment_id TEXT NOT NULL REFERENCES commitments(id),
+    to_commitment_id TEXT NOT NULL REFERENCES commitments(id),
+    link_type TEXT NOT NULL DEFAULT 'other',
+    savings_at_stake NUMERIC(12, 2) NOT NULL DEFAULT 0,
+    UNIQUE (from_commitment_id, to_commitment_id),
+    CHECK (from_commitment_id <> to_commitment_id),
+    CHECK (link_type IN ('freight_consolidation', 'volume_discount', 'moq_pool', 'bundled_shipment', 'other'))
+);
+
 CREATE TABLE outcomes (
     id TEXT PRIMARY KEY,
     decision_id TEXT NOT NULL UNIQUE REFERENCES decisions(id),

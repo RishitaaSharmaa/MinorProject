@@ -12,6 +12,7 @@ from faker import Faker
 
 from . import config
 from .baseline_mrp import reorder_quantity
+from decisionwatch.llm.client import LLMClient
 
 
 def _week_start(day: date) -> date:
@@ -77,21 +78,15 @@ def _llm_notes(cases: list[dict]) -> list[str]:
     if provider == config.EXTRACTION_PROVIDER and config.NOTE_LLM_MODEL == config.EXTRACTION_MODEL:
         raise ValueError("Note generation and extraction must not use the same provider and model")
     if provider == "groq":
-        from groq import Groq
-
-        response = Groq().chat.completions.create(
-            model=config.NOTE_LLM_MODEL,
-            temperature=config.NOTE_LLM_TEMPERATURE,
-            messages=[
-                {"role": "system", "content": (
-                    "Write one short, realistic, slightly messy purchase-order note per case as a busy "
-                    "Indian SME buyer. Vary terse phrasing and occasional Hinglish. Some notes may omit "
-                    "one assumption. Return only a JSON array of strings in the same order."
-                )},
-                {"role": "user", "content": json.dumps(cases, ensure_ascii=True)},
-            ],
+        content = LLMClient().complete(
+            "synthetic_notes",
+            system_prompt=(
+                "Write one short, realistic, slightly messy purchase-order note per case as a busy "
+                "Indian SME buyer. Vary terse phrasing and occasional Hinglish. Some notes may omit "
+                "one assumption. Return only a JSON array of strings in the same order."
+            ),
+            user_prompt=json.dumps(cases, ensure_ascii=True),
         )
-        content = response.choices[0].message.content or "[]"
     else:
         raise ValueError("NOTE_LLM_PROVIDER must be 'template' or 'groq'")
 
@@ -213,7 +208,7 @@ def generate_decisions(world: dict, rng: np.random.Generator, fake: Faker) -> di
                 "id": commitment_id,
                 "decision_id": decision_id,
                 "cancellation_fee_pct": round(float(rng.uniform(0, 0.25)), 3),
-                "reversible_until_date": (day + timedelta(days=max(1, lead_time // 2))).isoformat(),
+                "reversible_until_date": (day + timedelta(days=max(7, lead_time))).isoformat(),
                 "linked_commitment_id": linked_id,
             }
             commitments.append(commitment)
@@ -228,7 +223,10 @@ def generate_decisions(world: dict, rng: np.random.Generator, fake: Faker) -> di
             for case in notes_cases
         ]
     else:
-        notes = _llm_notes(notes_cases)
+        notes = []
+        for start in range(0, len(notes_cases), config.NOTES_BATCH_SIZE):
+            batch = notes_cases[start:start + config.NOTES_BATCH_SIZE]
+            notes.extend(_llm_notes(batch))
     assumptions_rows = []
     for case, note in zip(notes_cases, notes):
         decision = decisions_by_id[case["decision_id"]]
