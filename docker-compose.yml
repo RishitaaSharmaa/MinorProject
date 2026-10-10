@@ -27,11 +27,19 @@ services:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-decisionwatch}:${POSTGRES_PASSWORD:-decisionwatch_dev}@db:5432/${POSTGRES_DB:-decisionwatch}
       LLM_MODEL: ${DECISIONWATCH_LLM_MODEL:-openai/gpt-oss-20b}
       NOTE_LLM_MODEL: ${DECISIONWATCH_NOTE_LLM_MODEL:-openai/gpt-oss-120b}
+      DEMO_MODE: ${DEMO_MODE:-true}
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
+
+  ui:
+    build: ./ui
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
 
 volumes:
   postgres_data:

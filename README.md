@@ -2,6 +2,14 @@
 
 DecisionWatch records why procurement decisions were made, turns those reasons into checkable conditions, and rechecks them when state changes arrive. It flags a decision only when a condition is invalid and the supplied estimated regret is strictly greater than the switching cost. Condition checks and flagging are deterministic; the LLM is only used for condition extraction and explanation.
 
+## Quick demo (one command)
+
+```powershell
+docker compose up --build
+```
+
+Then open **http://localhost:8080**. The stack starts PostgreSQL, the API and the React console, loads the demo dataset and seeds a reviewed workflow on first start (`DEMO_MODE=true`, the default; set `DEMO_MODE=false` in `.env` to start empty). Restarts are idempotent; `docker compose down -v` resets everything. API docs: http://localhost:8000/docs. The "Get suggestion" panel needs `GROQ_API_KEY` in `.env`; everything else works without it.
+
 ## Run the application
 
 Use Python 3.11 and Docker Compose. `.env.example` supplies local-only PostgreSQL credentials; copy it to `.env` to customize settings or provide `GROQ_API_KEY`. Start the backend and database with:

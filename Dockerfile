@@ -8,7 +8,10 @@ COPY scripts ./scripts
 COPY data_generator/output ./data_generator/output
 COPY alembic.ini ./
 COPY alembic ./alembic
-RUN pip install --no-cache-dir .
+COPY docker-entrypoint.sh ./
+RUN pip install --no-cache-dir . \
+    && sed -i 's/\r$//' docker-entrypoint.sh \
+    && chmod +x docker-entrypoint.sh
 
 EXPOSE 8000
-CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["./docker-entrypoint.sh"]
