@@ -3,7 +3,7 @@
 from datetime import date, datetime, timezone
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
@@ -18,17 +18,24 @@ from app.api.schemas import (
     DecisionActionResponse,
     DecisionDetailResponse,
     DecisionScoreOut,
+    IngestBatchRequest,
+    IngestBatchResponse,
+    IngestEventRequest,
+    IngestEventResponse,
     MetricsResponse,
     RecheckResponse,
     SuggestionResponse,
     TimelineEventOut,
 )
+from app.api.auth import require_ingest_key
 from app.connectors.factory import get_connector
 from app.db import get_db
 from app.models import Assumption, AssumptionProposal, Decision, StateEvent
 from app.services.brief import generate_brief
 from app.services.conditions import Condition, ProposedCondition
+from app.services.alerts import notify_violations
 from app.services.extraction import extract_assumptions
+from app.services.ingest import IngestResult, ingest_event
 from app.services.metrics import compute_metrics
 from app.services.reasoning import explain_score
 from app.services.watcher_runner import recheck_assumptions
@@ -140,6 +147,75 @@ def confirm_decision_assumptions(
         edited_count=edited_count,
         rejected_count=len(payload.rejected_proposal_ids),
         assumption_ids=assumption_ids,
+    )
+
+
+def _ingest(session: Session, payload: IngestEventRequest) -> IngestResult:
+    try:
+        return ingest_event(
+            session,
+            entity_type=payload.entity_type,
+            entity_id=payload.entity_id,
+            field_name=payload.field,
+            new_value=payload.new_value,
+            old_value=payload.old_value,
+            event_time=payload.event_time,
+            event_id=payload.id,
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+
+def _out(result: IngestResult) -> IngestEventResponse:
+    return IngestEventResponse(
+        event_id=result.event_id,
+        duplicate=result.duplicate,
+        assumptions_evaluated=result.assumptions_evaluated,
+        violated_assumption_ids=list(result.violated_assumption_ids),
+        violated_decision_ids=list(result.violated_decision_ids),
+        recovered_assumption_ids=list(result.recovered_assumption_ids),
+        full_recheck=result.full_recheck,
+    )
+
+
+@router.post("/events", response_model=IngestEventResponse, dependencies=[Depends(require_ingest_key)])
+def ingest_state_event(
+    payload: IngestEventRequest,
+    background: BackgroundTasks,
+    session: Session = Depends(get_db),
+) -> IngestEventResponse:
+    """Record one live state event and recheck only the assumptions it can affect.
+
+    Idempotent on `id`: resending the same event returns `duplicate: true` and
+    changes nothing, so webhook retries are safe. Requires `X-API-Key`.
+    """
+    result = _ingest(session, payload)
+    background.add_task(
+        notify_violations, result, f"{payload.entity_type}:{payload.entity_id}", payload.field
+    )
+    return _out(result)
+
+
+@router.post("/events/batch", response_model=IngestBatchResponse, dependencies=[Depends(require_ingest_key)])
+def ingest_state_events(
+    payload: IngestBatchRequest,
+    background: BackgroundTasks,
+    session: Session = Depends(get_db),
+) -> IngestBatchResponse:
+    """Ingest up to 1000 events in the order given (same semantics as `POST /events`)."""
+    results = []
+    for event in payload.events:
+        result = _ingest(session, event)
+        results.append(result)
+        background.add_task(
+            notify_violations, result, f"{event.entity_type}:{event.entity_id}", event.field
+        )
+    flagged = sorted({d for r in results for d in r.violated_decision_ids})
+    return IngestBatchResponse(
+        results=[_out(r) for r in results],
+        ingested=sum(1 for r in results if not r.duplicate),
+        duplicates=sum(1 for r in results if r.duplicate),
+        decisions_flagged=flagged,
     )
 
 

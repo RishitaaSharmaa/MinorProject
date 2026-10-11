@@ -41,6 +41,27 @@ POST /events/recheck?as_of=YYYY-MM-DD
 
 replays every recorded state event up to that date and resets every non-retired assumption's status to match a deterministic point-in-time snapshot (safe to call repeatedly, and at any date, in any order). `GET /brief`, `GET /decisions/{id}`, and `GET /metrics` all read whatever `Assumption.status` the last recheck left behind, so call `/events/recheck` for a given `as_of` before reading any of them for that same date -- the React console in `ui/` (below) does this automatically whenever its date slider moves. Run the extraction baseline with `docker compose exec app python -m scripts.eval_extraction`. It reports per-condition precision, recall, and F1 against the isolated GT tables. Optional hand-authored examples belong in `data_generator/gold_set/*.jsonl` as `{"decision": {"id": "...", "free_text_reason": "...", "item_id": "...", "supplier_id": "..."}, "conditions": [{"type": "stock_lt", "entity_ref": "item:SKU1", "op": "<", "value": 10}]}`.
 
+## Live events and MCP
+
+**Event ingest.** External systems push changes instead of waiting for a CSV load. Set `INGEST_API_KEY` (the local-only default in `.env.example` is `dev-ingest-key`; ingest returns 503 while it is empty):
+
+```powershell
+curl -X POST http://localhost:8000/events -H "X-API-Key: dev-ingest-key" -H "Content-Type: application/json" `
+  -d '{"id":"erp-90210","entity_type":"item","entity_id":"SKU001","field":"stock_qty","new_value":4}'
+```
+
+`POST /events/batch` takes up to 1000. Events are idempotent on `id` (a retry returns `duplicate: true`), and only the assumptions watching that entity/field are rechecked; the response lists the decisions just invalidated. A late-arriving event older than one already stored for the same entity/field triggers a full replay instead (`full_recheck: true`). Set `ALERT_WEBHOOK_URL` to POST a JSON summary (Slack/Teams-compatible `text` field) when an event breaks assumptions. `entity_type` is `item` or `supplier`; `field` matches the assumption conditions (e.g. `stock_qty`, `lead_time_days`, `strike_status`).
+
+**MCP server.** `mcp_server/` exposes the API to AI agents (Claude Desktop/Code, etc.) over stdio. It is a separate process that only calls the REST API:
+
+```powershell
+python -m pip install -e ".[mcp]"
+$env:DECISIONWATCH_API_URL = "http://localhost:8000"; $env:INGEST_API_KEY = "dev-ingest-key"
+python -m mcp_server.server          # add --http for streamable HTTP
+```
+
+Tools: `get_morning_brief`, `get_decision`, `suggest_action`, `ingest_event`, `get_metrics`. `record_action` (which writes a decision outcome) is registered only when `DECISIONWATCH_MCP_ALLOW_WRITES=true`. Client config example: `{"command": "python", "args": ["-m", "mcp_server.server"], "env": {"DECISIONWATCH_API_URL": "http://localhost:8000", "INGEST_API_KEY": "dev-ingest-key"}}`.
+
 ## React console
 
 `ui/` is a React (Vite) app. Its landing page explains what DecisionWatch is, the problem it solves and how it helps an enterprise; the console (`/console`) has four pages (Morning Brief, Confirm Assumptions, Decision Detail, Metrics) that talk only to the API, never the database. It is not part of the Docker image; run it separately once the API is up (requires Node.js 18+):

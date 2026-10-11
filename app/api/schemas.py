@@ -154,6 +154,45 @@ class MetricsResponse(BaseModel):
     extraction_correction_rate: float
 
 
+class IngestEventRequest(BaseModel):
+    """One external state change pushed by an ERP, webhook or file adapter."""
+
+    id: str | None = Field(default=None, max_length=64, description="Idempotency key; generated if omitted")
+    entity_type: Literal["item", "supplier"]
+    entity_id: str = Field(min_length=1, max_length=255)
+    field: str = Field(min_length=1, max_length=128)
+    new_value: Any
+    old_value: Any = None
+    event_time: datetime | None = None
+
+
+class IngestEventResponse(BaseModel):
+    """Result of ingesting one event."""
+
+    event_id: str
+    duplicate: bool
+    assumptions_evaluated: int
+    violated_assumption_ids: list[str]
+    violated_decision_ids: list[str]
+    recovered_assumption_ids: list[str]
+    full_recheck: bool
+
+
+class IngestBatchRequest(BaseModel):
+    """Several events ingested in order."""
+
+    events: list[IngestEventRequest] = Field(min_length=1, max_length=1000)
+
+
+class IngestBatchResponse(BaseModel):
+    """Per-event results plus roll-up counts."""
+
+    results: list[IngestEventResponse]
+    ingested: int
+    duplicates: int
+    decisions_flagged: list[str]
+
+
 class RecheckResponse(BaseModel):
     """Counts from one point-in-time assumption recheck pass."""
 

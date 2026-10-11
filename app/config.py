@@ -19,6 +19,12 @@ class Settings(BaseSettings):
     note_llm_provider: str = "groq"
     note_llm_model: str = "llama-3.3-70b-versatile"
     api_url: str = "http://localhost:8000"
+    #: Shared secret for the event-ingest endpoints (`X-API-Key`). Ingest is
+    #: disabled (503) while this is empty so it is never open by accident.
+    ingest_api_key: SecretStr = SecretStr("")
+    #: Optional URL that receives a JSON POST whenever an ingested event breaks
+    #: an assumption (works with Slack/Teams incoming webhooks or any receiver).
+    alert_webhook_url: str = ""
 
     #: Fallback cost_keep, as a fraction of order value, when no condition-specific
     #: model can be grounded in connector data (marks the estimate for confidence scoring).
