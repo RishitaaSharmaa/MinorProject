@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     #: Optional URL that receives a JSON POST whenever an ingested event breaks
     #: an assumption (works with Slack/Teams incoming webhooks or any receiver).
     alert_webhook_url: str = ""
+    #: Days without a state event for an assumption's watched entity/field before the
+    #: assumption is reported as stale (its "live" status is unverified, not confirmed).
+    stale_after_days: int = 14
 
     #: Fallback cost_keep, as a fraction of order value, when no condition-specific
     #: model can be grounded in connector data (marks the estimate for confidence scoring).

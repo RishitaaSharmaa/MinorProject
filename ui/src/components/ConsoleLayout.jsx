@@ -8,6 +8,7 @@ const NAV = [
   { to: "brief", label: "Morning Brief" },
   { to: "assumptions", label: "Confirm Assumptions" },
   { to: "decisions", label: "Decision Detail" },
+  { to: "freshness", label: "Data Freshness" },
   { to: "metrics", label: "Metrics" },
 ];
 

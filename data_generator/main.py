@@ -14,6 +14,7 @@ from . import config
 from .baseline_mrp import build_baseline_flags
 from .decision_gen import generate_decisions
 from .event_gen import generate_events
+from .stale_feed import generate_stale_feed, stock_entities_from_decisions
 from .world_gen import generate_world
 
 
@@ -42,7 +43,20 @@ def run(output_dir: Path | None = None) -> dict[str, pd.DataFrame]:
     world = generate_world(rng, fake)
     procurement = generate_decisions(world, rng, fake)
     events, violations = generate_events(world, procurement, rng)
+    # Stale-ERP scenario: added after violations are labelled and kept out of the
+    # naive baseline (a no-change sync is not a state change to react to).
     baseline_flags = build_baseline_flags(events, procurement["decisions"])
+    first_stock: dict[str, int] = {}
+    for row in procurement["stock_snapshot"]:
+        first_stock.setdefault(row["item_id"], row["qty_on_hand"])
+    sync_events, stale_feed_scenarios = generate_stale_feed(
+        stock_entities_from_decisions(
+            procurement["decisions"], first_stock,
+            exclude={event["entity"] for event in events if event["field"] == "stock_qty"},
+        ),
+        first_event_id=len(events) + 1,
+    )
+    events = sorted(events + sync_events, key=lambda event: (event["event_time"], event["id"]))
 
     violation_decisions = {row["decision_id"] for row in violations}
     baseline_decisions = {row["decision_id"] for row in baseline_flags}
@@ -77,6 +91,7 @@ def run(output_dir: Path | None = None) -> dict[str, pd.DataFrame]:
         "assumptions": pd.DataFrame(procurement["assumptions"]),
         "supplier_delivery_history": pd.DataFrame(procurement["supplier_delivery_history"]),
         "state_events": pd.DataFrame(events),
+        "stale_feed_scenarios": pd.DataFrame(stale_feed_scenarios),
         "ground_truth_violations": pd.DataFrame(violations, columns=["event_id", "decision_id", "violated_condition", "event_date"]),
         "commitments": pd.DataFrame(procurement["commitments"]),
         "outcomes": pd.DataFrame(outcomes),

@@ -203,6 +203,31 @@ class RecheckResponse(BaseModel):
     recoveries: int
 
 
+class StaleAssumptionOut(BaseModel):
+    """An assumption whose watched ERP field has not been refreshed recently."""
+
+    assumption_id: str
+    decision_id: str
+    entity: str
+    field: str
+    status: str
+    last_event_time: datetime | None
+    age_days: float
+    never_updated: bool
+
+
+class StalenessResponse(BaseModel):
+    """Assumptions judged on ERP data older than the staleness threshold."""
+
+    as_of: date
+    stale_after_days: int
+    stale_count: int
+    never_reported_count: int
+    decisions_affected: list[str]
+    stale: list[StaleAssumptionOut]
+    never_reported: list[StaleAssumptionOut]
+
+
 class SuggestionResponse(BaseModel):
     """An advisory, LLM-written action suggestion alongside the deterministic recommendation."""
 

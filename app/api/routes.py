@@ -24,10 +24,13 @@ from app.api.schemas import (
     IngestEventResponse,
     MetricsResponse,
     RecheckResponse,
+    StaleAssumptionOut,
+    StalenessResponse,
     SuggestionResponse,
     TimelineEventOut,
 )
 from app.api.auth import require_ingest_key
+from app.config import get_settings
 from app.connectors.factory import get_connector
 from app.db import get_db
 from app.models import Assumption, AssumptionProposal, Decision, StateEvent
@@ -37,6 +40,7 @@ from app.services.alerts import notify_violations
 from app.services.extraction import extract_assumptions
 from app.services.ingest import IngestResult, ingest_event
 from app.services.metrics import compute_metrics
+from app.services.staleness import StaleAssumption, find_stale_assumptions
 from app.services.reasoning import explain_score
 from app.services.watcher_runner import recheck_assumptions
 from app.services.scoring import DecisionScore, score_decision
@@ -238,6 +242,46 @@ def recheck_events(
         assumptions_rechecked=summary.assumptions_rechecked,
         violations=summary.violations,
         recoveries=summary.recoveries,
+    )
+
+
+@router.get("/staleness", response_model=StalenessResponse)
+def get_staleness(
+    as_of: date | None = Query(default=None),
+    stale_after_days: int | None = Query(default=None, ge=1, le=3650),
+    session: Session = Depends(get_db),
+) -> StalenessResponse:
+    """List assumptions whose watched ERP field has had no update recently.
+
+    A silent feed leaves assumptions "live" only because nothing contradicted
+    them; this separates verified-fresh from unverified. `stale` holds fields
+    that reported before and then went quiet; `never_reported` holds fields
+    that have never produced an event. Threshold defaults to the
+    `STALE_AFTER_DAYS` setting.
+    """
+    threshold = stale_after_days or get_settings().stale_after_days
+    reference = as_of or date.today()
+    found = find_stale_assumptions(session, reference, threshold)
+    silent = [_stale_out(item) for item in found if not item.never_updated]
+    never = [_stale_out(item) for item in found if item.never_updated]
+    return StalenessResponse(
+        as_of=reference,
+        stale_after_days=threshold,
+        stale_count=len(silent),
+        never_reported_count=len(never),
+        decisions_affected=sorted({item.decision_id for item in silent}),
+        stale=silent,
+        never_reported=never,
+    )
+
+
+def _stale_out(item: StaleAssumption) -> StaleAssumptionOut:
+    """Convert a staleness dataclass into its API response schema."""
+    return StaleAssumptionOut(
+        assumption_id=item.assumption_id, decision_id=item.decision_id,
+        entity=item.entity, field=item.field, status=item.status,
+        last_event_time=item.last_event_time, age_days=item.age_days,
+        never_updated=item.never_updated,
     )
 
 

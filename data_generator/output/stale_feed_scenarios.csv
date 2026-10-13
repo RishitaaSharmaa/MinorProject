@@ -1,0 +1,9 @@
+entity,field,status,cadence_days,first_sync,last_sync,silent_days_at_end
+item:SKU004,stock_qty,silent,7,2025-04-02,2025-08-13,48
+item:SKU009,stock_qty,silent,7,2025-04-03,2025-07-10,82
+item:SKU016,stock_qty,silent,7,2025-04-03,2025-07-10,82
+item:SKU002,stock_qty,silent,7,2025-04-01,2025-07-22,70
+item:SKU037,stock_qty,silent,7,2025-04-02,2025-07-02,90
+item:SKU003,stock_qty,healthy,7,2025-04-07,2025-09-29,0
+item:SKU026,stock_qty,healthy,7,2025-04-05,2025-09-27,0
+item:SKU036,stock_qty,healthy,7,2025-04-05,2025-09-27,0

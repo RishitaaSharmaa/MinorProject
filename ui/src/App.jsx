@@ -5,6 +5,7 @@ import SiteLayout from "./components/SiteLayout";
 import Assumptions from "./pages/Assumptions";
 import Brief from "./pages/Brief";
 import DecisionDetail from "./pages/DecisionDetail";
+import Freshness from "./pages/Freshness";
 import Landing from "./pages/Landing";
 import Metrics from "./pages/Metrics";
 
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="assumptions" element={<Assumptions />} />
         <Route path="decisions" element={<DecisionDetail />} />
         <Route path="decisions/:id" element={<DecisionDetail />} />
+        <Route path="freshness" element={<Freshness />} />
         <Route path="metrics" element={<Metrics />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -19,7 +19,7 @@ violations, and a non-empty morning brief -- in the UI immediately.
 """
 
 import argparse
-from datetime import date, datetime, timezone
+from datetime import date
 from uuid import uuid4
 
 from sqlalchemy import delete, select
@@ -57,10 +57,12 @@ def seed_review_workflow(session: Session, as_of: date | None = None) -> dict[st
         session.execute(delete(AssumptionProposal).where(AssumptionProposal.decision_id.in_(decision_ids)))
         session.flush()
 
-    now = datetime.now(timezone.utc)
     proposals_written = 0
     assumptions_confirmed = 0
     for decision in decisions:
+        # Confirmed at the decision's own (simulated) time so staleness ages
+        # are measured on the dataset calendar, not wall-clock time.
+        now = decision.created_at
         decision_dto = connector.get_decision(decision.id)
         proposals = extract_assumptions(decision_dto, connector, as_of=decision.created_at, include_llm=False)
         for proposal in proposals:

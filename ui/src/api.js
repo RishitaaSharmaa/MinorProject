@@ -35,6 +35,8 @@ export const api = {
   decision: (id, asOf) => request("GET", `/decisions/${encodeURIComponent(id)}`, { params: { as_of: asOf } }),
   suggest: (id, asOf) => request("POST", `/decisions/${encodeURIComponent(id)}/suggestion`, { params: { as_of: asOf } }),
   metrics: (asOf) => request("GET", "/metrics", { params: { as_of: asOf } }),
+  staleness: (asOf, staleAfterDays) =>
+    request("GET", "/staleness", { params: { as_of: asOf, stale_after_days: staleAfterDays } }),
   recheck: (asOf) => request("POST", "/events/recheck", { params: { as_of: asOf } }),
   act: (id, action, note) =>
     request("POST", `/decisions/${encodeURIComponent(id)}/action`, { body: { action, note } }),
