@@ -5,12 +5,20 @@ import ErrorBoundary from "./ErrorBoundary";
 import Logo from "./Logo";
 
 const NAV = [
-  { to: "brief", label: "Morning Brief" },
-  { to: "assumptions", label: "Confirm Assumptions" },
-  { to: "decisions", label: "Decision Detail" },
-  { to: "freshness", label: "Data Freshness" },
-  { to: "metrics", label: "Metrics" },
+  { to: "brief", label: "Morning Brief", icon: "M4 5h16M4 10h16M4 15h10M4 20h7" },
+  { to: "assumptions", label: "Confirm Assumptions", icon: "M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" },
+  { to: "decisions", label: "Decision Detail", icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5" },
+  { to: "freshness", label: "Data Freshness", icon: "M12 7v5l3 3M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" },
+  { to: "metrics", label: "Metrics", icon: "M4 20V10M10 20V4M16 20v-7M22 20H2" },
 ];
+
+function NavIcon({ d }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+}
 
 // Typed dates can fall outside the dataset's simulated calendar; clamp them back in.
 const clamp = (iso) => (iso < DATASET_START ? DATASET_START : iso > DATASET_END ? DATASET_END : iso);
@@ -23,10 +31,11 @@ export default function ConsoleLayout() {
     <div className="console">
       <aside className="sidebar">
         <Link to="/" className="sidebar-brand"><Logo light /></Link>
+        <span className="sidebar-label">Workspace</span>
         <nav aria-label="Console">
           {NAV.map((item) => (
             <NavLink key={item.to} to={item.to} className={({ isActive }) => `sidebar-link${isActive ? " active" : ""}`}>
-              {item.label}
+              <NavIcon d={item.icon} />{item.label}
             </NavLink>
           ))}
         </nav>
