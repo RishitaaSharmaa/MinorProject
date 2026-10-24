@@ -1,0 +1,46 @@
+# Customer-run DecisionWatch agent: runs entirely inside your own network, so your ERP data
+# never reaches the hosted site. The hosted site only serves the web app; your browser talks
+# to this agent directly.
+#
+#   DB_PASSWORD=<secret> AGENT_TOKEN=<long random secret> DECISIONWATCH_SITE=https://app.example.com \
+#     docker compose -f docker-compose.agent.yml up -d --build
+#
+# Then open the hosted site, choose "Connect your agent" and enter this agent's URL and token.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: decisionwatch
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD}
+      POSTGRES_DB: decisionwatch
+    volumes:
+      - agent_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U decisionwatch -d decisionwatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  agent:
+    build: .
+    # ERP credentials (SAP_B1_*, NETSUITE_*, ERP_SOURCE, SYNC_INTERVAL_MINUTES) live in this optional
+    # file on your own server; see .env.agent.example.
+    env_file:
+      - path: .env.agent
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://decisionwatch:${DB_PASSWORD}@db:5432/decisionwatch
+      AGENT_MODE: "true"
+      AGENT_TOKEN: ${AGENT_TOKEN:?set AGENT_TOKEN}
+      CORS_ORIGINS: ${DECISIONWATCH_SITE:?set DECISIONWATCH_SITE}
+      DEMO_MODE: "false"
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  agent_data:

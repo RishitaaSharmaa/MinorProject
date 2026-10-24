@@ -239,3 +239,52 @@ class SuggestionResponse(BaseModel):
     rationale: str
     risks: list[str]
     next_steps: list[str]
+
+
+
+ErpSystem = Literal[
+    "sap_s4hana", "sap_b1", "sap_ecc", "oracle", "netsuite", "dynamics_365", "odoo", "infor", "other",
+]
+
+
+class IntegrationRequestIn(BaseModel):
+    """ERP landscape and contact details for a one-month free trial."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    company_name: str = Field(min_length=1, max_length=255)
+    contact_name: str = Field(min_length=1, max_length=255)
+    contact_email: str = Field(max_length=255, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    contact_phone: str | None = Field(default=None, max_length=64)
+    job_title: str | None = Field(default=None, max_length=128)
+    erp_system: ErpSystem
+    erp_version: str | None = Field(default=None, max_length=128)
+    deployment: Literal["cloud", "on_prem", "hybrid"]
+    integration_method: Literal["rest_api", "webhook", "database", "file_export", "not_sure"]
+    monthly_po_volume: int | None = Field(default=None, ge=0, le=100_000_000)
+    planner_count: int | None = Field(default=None, ge=0, le=1_000_000)
+    notes: str | None = Field(default=None, max_length=2000)
+    consent: bool = Field(description="Agreement to be contacted about the trial")
+
+
+class IntegrationRequestOut(BaseModel):
+    """Stored integration request."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    company_name: str
+    contact_name: str
+    contact_email: str
+    contact_phone: str | None
+    job_title: str | None
+    erp_system: str
+    erp_version: str | None
+    deployment: str
+    integration_method: str
+    monthly_po_volume: int | None
+    planner_count: int | None
+    notes: str | None
+    status: str
+    created_at: datetime
+    trial_ends_at: datetime

@@ -7,7 +7,7 @@ services:
       - path: .env
         required: false
     ports:
-      - "5432:5432"
+      - "15432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -28,6 +28,7 @@ services:
       LLM_MODEL: ${DECISIONWATCH_LLM_MODEL:-openai/gpt-oss-20b}
       NOTE_LLM_MODEL: ${DECISIONWATCH_NOTE_LLM_MODEL:-openai/gpt-oss-120b}
       DEMO_MODE: ${DEMO_MODE:-true}
+      TRUST_PROXY_HEADERS: "true"
     ports:
       - "8000:8000"
     depends_on:
@@ -35,7 +36,9 @@ services:
         condition: service_healthy
 
   ui:
-    build: ./ui
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
     ports:
       - "8080:80"
     depends_on:

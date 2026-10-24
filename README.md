@@ -62,6 +62,20 @@ python -m mcp_server.server          # add --http for streamable HTTP
 
 Tools: `get_morning_brief`, `get_decision`, `suggest_action`, `ingest_event`, `get_metrics`. `record_action` (which writes a decision outcome) is registered only when `DECISIONWATCH_MCP_ALLOW_WRITES=true`. Client config example: `{"command": "python", "args": ["-m", "mcp_server.server"], "env": {"DECISIONWATCH_API_URL": "http://localhost:8000", "INGEST_API_KEY": "dev-ingest-key"}}`.
 
+## Self-serve workspaces and ERP integration (free 1-month trial)
+
+Customers connect their own ERP data from the website; they never receive our code. The flow is **sign up -> export CSVs from any ERP -> upload and match columns in the browser -> preview -> import**, with `/integrate` documenting the steps and capturing sales leads (`POST /integration-requests`, listed with the `X-API-Key` at `GET /integration-requests`).
+
+**Workspaces.** `POST /auth/signup` creates a tenant with a 30-day trial, an owner user and a bearer session (`/auth/login`, `/auth/logout`, `/auth/me`). Each tenant gets its **own database schema** (`t_<12 hex>`) holding a full copy of the operational tables; a request is bound to its tenant's schema with SQLAlchemy's `schema_translate_map` (`app/tenancy.py`), so services and queries are tenant-unaware and tenants cannot see each other's rows. The shared demo data stays in the default schema and is what unauthenticated visitors see. Control-plane tables (`tenants`, `users`, `auth_sessions`, `integration_requests`) live in the default schema (migrations `0007`, `0008`); tenant schemas are created from the models at sign-up.
+
+Settings: `AUTH_REQUIRED` (default `false`: anonymous requests use the demo workspace; set `true` in production so every endpoint needs a session or a tenant key), `TRIAL_DAYS` (30), `SESSION_TTL_DAYS` (7). After a trial ends, a workspace becomes read-only (writes return 402, reads still work).
+
+**Importing data.** `app/services/importer.py` defines five canonical datasets (`suppliers`, `items`, `purchase_orders`, `stock_levels`, `state_events`). `GET /import/datasets` describes them; `POST /import/{dataset}/preview` parses a CSV (delimiter auto-detected), suggests a column mapping from names/synonyms (SKU, Vendor Code, PO No, ...), validates every row (numbers like `1,20,000`, `16%`, several date formats, references to suppliers/items, duplicates) and writes nothing; `POST /import/{dataset}/commit` upserts the valid rows (or all rows, or only valid ones with `skip_invalid`), saves the mapping for next time and logs an import run. Re-uploading is idempotent. `stock_levels` and `state_events` also run the existing live-recheck, so assumptions break the moment the data says so. Import order: suppliers, items, purchase orders, stock.
+
+**Real-time feed.** `POST /workspace/ingest-key` issues a per-workspace key (shown once, stored hashed) for `POST /events`; events land only in that workspace.
+
+Limits and caveats: SQLite has no schemas, so the tenant tests attach one database file per tenant (development and tests only; production needs PostgreSQL). Future migrations to operational tables must also be applied to every tenant schema. Rate limiting is in-process, per instance.
+
 ## React console
 
 `ui/` is a React (Vite) app. Its landing page explains what DecisionWatch is, the problem it solves and how it helps an enterprise; the console (`/console`) has four pages (Morning Brief, Confirm Assumptions, Decision Detail, Metrics) that talk only to the API, never the database. It is not part of the Docker image; run it separately once the API is up (requires Node.js 18+):
@@ -76,7 +90,7 @@ Open `http://localhost:5173`. In development, requests to `/api/*` are proxied t
 
 For local development outside Docker, install with `python -m pip install -e ".[dev]"`, set `DATABASE_URL` to a local PostgreSQL URL, run `alembic upgrade head`, and start `uvicorn app.main:app --reload`. `python -m pytest` runs the tests. The `/app` code uses only operational models; answer-key tables are populated only by the loader and are never imported by the application package.
 
-`ERP_CONNECTOR=synthetic` selects the PostgreSQL-backed connector. Set `ERP_CONNECTOR=sap_b1` to select the interface-complete SAP Business One Service Layer stub; its methods document the intended OPOR/POR1, OITW, OITM, and OCRD mappings and raise `NotImplementedError` until that integration is implemented. Evaluation code can pass `as_of` dates to the synthetic connector to replay history without reading later stock snapshots, forecasts, or supplier events.
+`ERP_CONNECTOR=synthetic` selects the PostgreSQL-backed connector the engine reads at runtime. Real ERPs are not read per request: the agent *syncs* them into its own database (see "Browser-only mode and ERP sync" below). The `sap_b1` entry of `ERP_CONNECTOR` is only a documented stub of per-call mappings. Evaluation code can pass `as_of` dates to the synthetic connector to replay history without reading later stock snapshots, forecasts, or supplier events.
 
 `LLM_PROVIDER`/`LLM_MODEL` configure extraction and explanations; `NOTE_LLM_PROVIDER`/`NOTE_LLM_MODEL` configure synthetic note generation. Compose uses `DECISIONWATCH_LLM_MODEL` and `DECISIONWATCH_NOTE_LLM_MODEL`, defaulting to currently active Groq-hosted `openai/gpt-oss-20b` and `openai/gpt-oss-120b` models, because a local `.env` can retain older model IDs. Settings are loaded with pydantic-settings and reject using the same provider/model pair for extraction and synthetic notes. No API credentials are committed.
 
@@ -120,3 +134,31 @@ CSV files are written to `data_generator/output/`. All simulation and LLM settin
 - Do not use only the synthetic LLM-written notes as the final test set; they may reflect the note-generation model's phrasing and biases.
 - Keep the extraction model/provider different from the note-generation model/provider. The extraction placeholder in `config.py` uses Groq `llama-3.1-8b-instant`; the generator rejects an identical provider/model pair if you change either configuration.
 - Validate generated assumptions and violation labels against domain-reviewed examples before using them as production-quality ground truth.
+## What the hosted site stores, and keeping your data in your own network (agent mode)
+
+The hosted site stores **accounts only**: company name, user name and email, password hash, billing details (name, email, address, country, tax ID; never card numbers) and trial/plan state, plus the "Integrate your ERP" lead form. It holds no decisions, items, suppliers, events or free-text reasons. A signed-in account that asks the hosted API for operational data gets `403`; that data lives in the customer's own agent. The only data hosted here is the shared synthetic demo.
+
+The agent is this same backend, run by the customer on their own server with their own database. Their browser talks to it directly, and imports, events and the console all go to the agent, not to the hosted site.
+
+```powershell
+$env:DB_PASSWORD = "<choose-a-password>"; $env:AGENT_TOKEN = "<long-random-secret>"
+$env:DECISIONWATCH_SITE = "https://your-hosted-site"      # origin allowed to call the agent
+docker compose -f docker-compose.agent.yml up -d --build
+```
+
+Sign up on the site, then it sends you to **/agent** to enter the agent's address and token (kept in that browser only). Every agent request needs the token; with `AGENT_TOKEN` unset the agent refuses all requests. Their ERP can push events to `POST <agent>/events` with the token as `X-API-Key`. Use `https` for an agent on another host (browsers block plain http except on localhost). `GROQ_API_KEY` is optional; without it extraction and suggestions are off, so no decision text leaves the network.
+
+Upgrading from the earlier per-tenant-schema design: migration `0009` drops the schema pointers but deliberately leaves old `t_<hex>` schemas in place. List them with `\dn t_*` in psql and remove each with `DROP SCHEMA "t_..." CASCADE` once you have confirmed they are not needed.
+
+## Browser-only mode and ERP sync
+
+**Browser-only mode (no server, nothing uploaded).** After signing up, choose "Use this browser" on `/agent`. The whole backend (the same FastAPI app, importer, scoring and watcher) runs inside the page with Pyodide (Python compiled to WebAssembly) against a SQLite file that the page keeps in its own IndexedDB. Imports, rechecks, the brief and decisions all work; the first start downloads about 20 MB once, then it is cached. Limits: data is tied to one browser and device (clearing site data erases it), there is no live event push or ERP sync, and the LLM features are off because no key exists in the page. `LOCAL_MODE` skips authentication, so the backend refuses to start with it anywhere but a browser.
+
+The engine files are built into the site by `npm run prepare:engine` (runs automatically before `dev` and `build`): the Pyodide runtime and packages come from the pinned Pyodide release, four pure-Python wheels are pinned and checked against PyPI's published hashes, and the backend source is bundled, so a user's browser fetches nothing from third parties. `npm run verify:engine` boots it in Node, imports data, reloads from the saved database and asserts no network request was made.
+
+**ERP sync (agent).** Set `ERP_SOURCE=sap_b1` or `netsuite` plus credentials (see `.env.agent.example`; use a read-only ERP user). The agent reads suppliers, items, purchase orders and stock and loads them through the same validation and upserts as a CSV import, so synced and uploaded data behave identically. Stock goes through the event pipeline, and a changed supplier lead time or standing since the previous sync is recorded as a state event, so assumptions break and decisions are flagged. `POST /sync` (or the "Sync now" button on the Connect page) runs it on demand, `POST /sync/test` checks credentials, and `SYNC_INTERVAL_MINUTES` schedules it.
+
+- **SAP Business One** (Service Layer): `BusinessPartners`, `Items`, `ItemGroups`, `PurchaseOrders` lines. SAP has no standard supplier lead-time or standing fields, so set `SAP_B1_LEAD_TIME_FIELD` / `SAP_B1_STRIKE_FIELD` to your own user-defined fields; otherwise `DEFAULT_LEAD_TIME_DAYS` applies and a frozen or invalid partner counts as a strike. Items with no main supplier are skipped and reported, not guessed.
+- **NetSuite** (SuiteQL, token-based auth): each dataset is one query whose column aliases are the importer's field names. The defaults use standard records; override any with `NETSUITE_QUERY_<DATASET>` for custom fields or subsidiaries.
+
+Verification status: both readers are tested against mocked ERP HTTP APIs (request shape, paging, signing, mapping, sync behaviour). They have not been run against a live SAP or NetSuite system, so expect to adjust field names or queries for a specific ERP version or customisation using a sandbox before relying on them.

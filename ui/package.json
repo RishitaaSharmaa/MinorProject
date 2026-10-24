@@ -4,8 +4,12 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "prepare:engine": "node scripts/prepare-engine.mjs",
+    "predev": "npm run prepare:engine",
     "dev": "vite",
+    "prebuild": "npm run prepare:engine",
     "build": "vite build",
+    "verify:engine": "node scripts/verify-engine.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,6 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
+    "pyodide": "^0.27.7",
     "vite": "^5.4.0"
   }
 }

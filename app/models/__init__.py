@@ -12,9 +12,15 @@ from app.models.decisions import (
     Outcome,
 )
 from app.models.history import Forecast, SalesHistory, StateEvent, StockSnapshot, SupplierDelivery
+from app.models.control import AuthSession, ControlBase, IntegrationRequest, Tenant, User
+from app.models.imports import ImportMapping, ImportRun
 
 __all__ = [
     "Assumption",
+    "AuthSession",
+    "ControlBase",
+    "ImportMapping",
+    "ImportRun",
     "AssumptionProposal",
     "AssumptionViolation",
     "Base",
@@ -22,6 +28,7 @@ __all__ = [
     "CommitmentLink",
     "Decision",
     "Forecast",
+    "IntegrationRequest",
     "Item",
     "Outcome",
     "SalesHistory",
@@ -29,4 +36,6 @@ __all__ = [
     "StockSnapshot",
     "Supplier",
     "SupplierDelivery",
+    "Tenant",
+    "User",
 ]

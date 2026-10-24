@@ -1,9 +1,9 @@
 """Decision review, brief, and metrics routes for the backend API."""
 
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from uuid import uuid4
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request
 from sqlalchemy import or_, select
 from sqlalchemy.orm import Session
 
@@ -22,6 +22,8 @@ from app.api.schemas import (
     IngestBatchResponse,
     IngestEventRequest,
     IngestEventResponse,
+    IntegrationRequestIn,
+    IntegrationRequestOut,
     MetricsResponse,
     RecheckResponse,
     StaleAssumptionOut,
@@ -29,11 +31,12 @@ from app.api.schemas import (
     SuggestionResponse,
     TimelineEventOut,
 )
-from app.api.auth import require_ingest_key
+from app.api.auth import require_admin_key, require_ingest_key
 from app.config import get_settings
+from app.ratelimit import RateLimiter, client_key
 from app.connectors.factory import get_connector
-from app.db import get_db
-from app.models import Assumption, AssumptionProposal, Decision, StateEvent
+from app.db import get_control_db, get_db
+from app.models import Assumption, AssumptionProposal, Decision, IntegrationRequest, StateEvent
 from app.services.brief import generate_brief
 from app.services.conditions import Condition, ProposedCondition
 from app.services.alerts import notify_violations
@@ -53,6 +56,42 @@ router = APIRouter()
 def health() -> dict[str, str]:
     """Return process liveness without depending on database availability."""
     return {"status": "ok"}
+
+
+TRIAL_DAYS = 30
+_lead_limiter = RateLimiter(limit=20, window_seconds=3600)
+
+
+@router.post("/integration-requests", response_model=IntegrationRequestOut, status_code=201)
+def create_integration_request(
+    body: IntegrationRequestIn,
+    request: Request,
+    session: Session = Depends(get_control_db),
+) -> IntegrationRequest:
+    """Store an enterprise's ERP details and start a one-month free trial window."""
+    if get_settings().agent_mode:
+        raise HTTPException(status_code=404, detail="Not found")
+    _lead_limiter.check(client_key(request))
+    if not body.consent:
+        raise HTTPException(status_code=422, detail="Consent to be contacted is required")
+    now = datetime.now(timezone.utc)
+    record = IntegrationRequest(
+        id=str(uuid4()), created_at=now, trial_ends_at=now + timedelta(days=TRIAL_DAYS), status="new",
+        **body.model_dump(),
+    )
+    session.add(record)
+    session.commit()
+    return record
+
+
+@router.get(
+    "/integration-requests",
+    response_model=list[IntegrationRequestOut],
+    dependencies=[Depends(require_admin_key)],
+)
+def list_integration_requests(session: Session = Depends(get_control_db)) -> list[IntegrationRequest]:
+    """List submitted requests, newest first (operator key only; workspace keys are refused)."""
+    return list(session.scalars(select(IntegrationRequest).order_by(IntegrationRequest.created_at.desc())))
 
 
 @router.post("/decisions/{decision_id}/extract", response_model=list[ProposedCondition])

@@ -137,7 +137,10 @@ export default function Landing() {
             Explore six months of simulated procurement history. Move the date, watch assumptions break,
             and review the arithmetic behind every recommendation.
           </p>
-          <Link to="/console" className="btn btn-primary">Open the console</Link>
+          <div className="hero-actions center-actions">
+            <Link to="/console" className="btn btn-primary">Open the console</Link>
+            <Link to="/integrate" className="btn btn-outline-dark">Integrate with your ERP, free for 1 month</Link>
+          </div>
         </div>
       </section>
     </>

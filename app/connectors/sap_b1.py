@@ -1,4 +1,8 @@
-"""Interface-complete SAP Business One Service Layer connector stub.
+"""Interface-complete SAP Business One connector stub (superseded for loading data by `app.sources`).
+
+Real SAP Business One integration now lives in `app.sources.sap_b1`, which reads the Service Layer
+into the agent's database. This stub remains only to document the per-call mapping.
+
 
 Implements the full `ERPConnector` contract so the application can be
 pointed at `ERP_CONNECTOR=sap_b1` without any other code change once this

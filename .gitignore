@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 ui/node_modules/
 ui/dist/
+ui/public/engine/

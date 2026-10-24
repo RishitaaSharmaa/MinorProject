@@ -10,9 +10,9 @@ from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from app.config import get_settings
-from app.db import get_db
+from app.db import get_control_db, get_db
 from app.main import app
-from app.models import Assumption, AssumptionViolation, Base, Decision
+from app.models import Assumption, AssumptionViolation, Base, ControlBase, Decision
 
 KEY = {"X-API-Key": "test-key"}
 
@@ -33,6 +33,7 @@ def factory(monkeypatch: pytest.MonkeyPatch) -> Iterator[sessionmaker[Session]]:
     get_settings.cache_clear()
     engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
     Base.metadata.create_all(engine)
+    ControlBase.metadata.create_all(engine)
     session_factory = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
     with session_factory() as session:
         session.add(Decision(
@@ -53,6 +54,7 @@ def factory(monkeypatch: pytest.MonkeyPatch) -> Iterator[sessionmaker[Session]]:
             yield session
 
     app.dependency_overrides[get_db] = override
+    app.dependency_overrides[get_control_db] = override
     yield session_factory
     app.dependency_overrides.clear()
     get_settings.cache_clear()

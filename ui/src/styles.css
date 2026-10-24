@@ -255,3 +255,53 @@ pre { background: var(--slate-50); border: 1px solid var(--slate-200); border-ra
   .topbar, .console-content { padding-inline: 16px; }
   .form-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* Enterprise integration page */
+.hero-compact { padding: 64px 0 72px; }
+.center-actions { justify-content: center; }
+.btn-outline-dark { background: var(--white); color: var(--navy-900); border-color: var(--slate-300); }
+.btn-outline-dark:hover { background: var(--slate-50); border-color: var(--slate-500); text-decoration: none; }
+.request-form { display: grid; gap: 20px; }
+.request-form fieldset { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0; padding: 18px; border: 1px solid var(--slate-200); border-radius: 10px; }
+.request-form legend { padding: 0 8px; font-weight: 700; color: var(--navy-900); }
+.request-form label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; font-weight: 600; color: var(--slate-700); }
+.request-form label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; }
+.request-form input:not([type="checkbox"]), .request-form select, .request-form textarea {
+  font: inherit; font-weight: 400; width: 100%; padding: 9px 11px; border: 1px solid var(--slate-300);
+  border-radius: 6px; background: var(--white); color: var(--slate-900);
+}
+.request-form button { justify-self: start; }
+.notice { padding: 14px 16px; border-radius: 8px; font-size: 0.95rem; }
+.notice-ok { background: var(--green-bg); color: var(--green); }
+.notice-error { background: var(--red-bg); color: var(--red); }
+.guide-steps { grid-template-columns: 1fr; margin-bottom: 32px; }
+.code-block { margin: 12px 0 0; padding: 14px; background: var(--navy-950); color: #e2e8f0; border-radius: 8px; overflow-x: auto; white-space: pre; }
+@media (max-width: 900px) { .request-form fieldset { grid-template-columns: 1fr; } }
+
+/* Auth and data-connection wizard */
+.auth-wrap { width: min(460px, 100% - 48px); margin-inline: auto; }
+.auth-title { font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--navy-900); }
+.auth-wrap .request-form { margin: 24px 0 16px; }
+.auth-wrap .request-form label { display: flex; }
+.text-danger { color: var(--red); }
+.sidebar-account { margin-top: auto; padding: 12px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); display: flex; flex-direction: column; gap: 6px; color: #cbd5e1; font-size: 0.85rem; }
+.sidebar-account strong { color: #fff; }
+.sidebar-account .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.sidebar-account .btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); }
+.sidebar-account + .sidebar-back { margin-top: 4px; }
+.dataset-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.dataset-tab { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius); font: inherit; font-weight: 600; color: var(--navy-900); cursor: pointer; text-align: left; }
+.dataset-tab small { display: block; font-weight: 400; color: var(--slate-500); font-size: 0.78rem; }
+.dataset-tab .step-num { width: 28px; height: 28px; font-size: 0.85rem; }
+.dataset-tab.active { border-color: var(--blue-600); box-shadow: 0 0 0 2px var(--blue-50); }
+.file-pick { display: flex; align-items: center; gap: 12px; margin: 14px 0; cursor: pointer; }
+.file-pick input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.file-pick:focus-within .btn { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+.wizard-h { font-size: 1rem; margin: 22px 0 10px; color: var(--navy-900); }
+.map-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 20px; }
+.map-grid label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; font-weight: 600; color: var(--slate-700); }
+.map-grid small { display: block; font-weight: 400; color: var(--slate-500); }
+.map-grid select { font: inherit; font-weight: 400; padding: 8px 10px; border: 1px solid var(--slate-300); border-radius: 6px; background: var(--white); }
+.map-missing select { border-color: var(--red); background: var(--red-bg); }
+.wizard-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+@media (max-width: 900px) { .map-grid { grid-template-columns: 1fr; } }
